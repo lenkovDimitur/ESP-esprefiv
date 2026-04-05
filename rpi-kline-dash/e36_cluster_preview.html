@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BMW E36 Gauge Cluster — Static Preview (1024×600)</title>
+<style>
+  body { margin: 0; background: #000; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+  canvas { border: 1px solid #222; }
+</style>
+</head>
+<body>
+<canvas id="cluster" width="1024" height="600"></canvas>
+<script>
+const canvas = document.getElementById('cluster');
+const ctx = canvas.getContext('2d');
+const W = 1024, H = 600;
+
+// ── E36 Color Palette ──
+const CLR_BG         = '#0D0D0D';
+const CLR_FACE       = '#000000';
+const CLR_TICK_MAJOR = '#FFFFFF';
+const CLR_TICK_MINOR = '#B4B4B4';
+const CLR_NUMBER     = '#FFFFFF';
+const CLR_NEEDLE     = '#FF6414'; // BMW orange-red
+const CLR_NEEDLE_TAIL= '#CC5010';
+const CLR_REDZONE    = 'rgba(200,0,0,0.35)';
+const CLR_REDZONE_TK = '#FF0000';
+const CLR_COLD_ZONE  = '#3C78C8'; // Blue
+const CLR_HOT_ZONE   = '#C80000'; // Red
+const CLR_RESERVE    = '#FF8C00'; // Amber
+const CLR_CENTER_CAP = '#282828';
+const CLR_CAP_RIM    = '#3C3C3C';
+const CLR_LCD_TEXT   = '#8CB48C'; // Greenish LCD
+const CLR_DIM        = '#606060';
+const CLR_TELL_BG    = '#1E1E1E';
+const CLR_TELL_BORDER= '#303030';
+const CLR_WARN_YELLOW= '#FFAA00';
+const CLR_WARN_RED   = '#FF2020';
+const CLR_GEAR_GREEN = '#00FF7F';
+
+// ── Gauge Geometry ──
+const TACH  = { cx: 270, cy: 290, r: 195 };
+const SPEED = { cx: 754, cy: 290, r: 195 };
+const COOL  = { cx: 115, cy: 490, r: 80 };
+const FUEL  = { cx: 909, cy: 490, r: 80 };
+
+const SWEEP_START = 225; // 7 o'clock (degrees, math convention: CCW from east)
+const SWEEP_DEG   = 270; // total sweep
+
+// Demo values
+const DEMO = { rpm: 3200, speed: 85, coolant: 72, fuel: 62, gear: 3 };
+
+// ── Helpers ──
+function degToRad(d) { return d * Math.PI / 180; }
+
+function valueFrac(val, min, max) {
+  return Math.max(0, Math.min(1, (val - min) / (max - min)));
+}
+
+function valueToAngle(val, min, max) {
+  // Returns angle in math degrees (CCW from east)
+  // At val_min → SWEEP_START (225°), at val_max → SWEEP_START - SWEEP_DEG (-45°)
+  const frac = valueFrac(val, min, max);
+  return SWEEP_START - frac * SWEEP_DEG;
+}
+
+function drawArcSector(cx, cy, rOuter, rInner, startDeg, endDeg, color) {
+  // Draw an annular sector (for red zone, cold/hot zones)
+  const startRad = degToRad(-startDeg); // negate for canvas CW convention
+  const endRad   = degToRad(-endDeg);
+  ctx.beginPath();
+  ctx.arc(cx, cy, rOuter, startRad, endRad, false);
+  ctx.arc(cx, cy, rInner, endRad, startRad, true);
+  ctx.closePath();
+  ctx.fillStyle = color;
+  ctx.fill();
+}
+
+// ── Draw Dial Face (ticks + numbers) ──
+function drawDialFace(gauge, config) {
+  const { cx, cy, r } = gauge;
+  const { valMin, valMax, majorStep, minorStep, numberFn, labelText,
+          fontSize, numberRadius, majorLen, minorLen, majorWidth, minorWidth,
+          redZoneStart, coldZoneEnd, hotZoneStart, reserveEnd,
+          startLabel, endLabel } = config;
+
+  // Face circle (black)
+  ctx.beginPath();
+  ctx.arc(cx, cy, r + 2, 0, Math.PI * 2);
+  ctx.fillStyle = CLR_FACE;
+  ctx.fill();
+
+  // Outer ring (subtle)
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI * 2);
+  ctx.strokeStyle = '#333333';
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  // Red zone (tachometer)
+  if (redZoneStart !== undefined) {
+    const rzStartAngle = valueToAngle(redZoneStart, valMin, valMax);
+    const rzEndAngle   = valueToAngle(valMax, valMin, valMax);
+    drawArcSector(cx, cy, r - 2, r - majorLen - 4, rzStartAngle, rzEndAngle, CLR_REDZONE);
+  }
+
+  // Cold zone (coolant)
+  if (coldZoneEnd !== undefined) {
+    const czStartAngle = valueToAngle(valMin, valMin, valMax);
+    const czEndAngle   = valueToAngle(coldZoneEnd, valMin, valMax);
+    drawArcSector(cx, cy, r - 2, r - majorLen - 4, czStartAngle, czEndAngle, 'rgba(60,120,200,0.3)');
+  }
+
+  // Hot zone (coolant)
+  if (hotZoneStart !== undefined) {
+    const hzStartAngle = valueToAngle(hotZoneStart, valMin, valMax);
+    const hzEndAngle   = valueToAngle(valMax, valMin, valMax);
+    drawArcSector(cx, cy, r - 2, r - majorLen - 4, hzStartAngle, hzEndAngle, 'rgba(200,0,0,0.3)');
+  }
+
+  // Reserve zone (fuel)
+  if (reserveEnd !== undefined) {
+    const resStartAngle = valueToAngle(valMin, valMin, valMax);
+    const resEndAngle   = valueToAngle(reserveEnd, valMin, valMax);
+    drawArcSector(cx, cy, r - 2, r - majorLen - 4, resStartAngle, resEndAngle, 'rgba(255,140,0,0.3)');
+  }
+
+  ctx.lineCap = 'round';
+
+  // Major ticks
+  for (let v = valMin; v <= valMax; v += majorStep) {
+    const angleDeg = valueToAngle(v, valMin, valMax);
+    const angleRad = degToRad(angleDeg);
+    const cosA = Math.cos(angleRad);
+    const sinA = Math.sin(angleRad);
+
+    const x1 = cx + (r - majorLen) * cosA;
+    const y1 = cy - (r - majorLen) * sinA;
+    const x2 = cx + (r - 2) * cosA;
+    const y2 = cy - (r - 2) * sinA;
+
+    const inRedZone = redZoneStart !== undefined && v >= redZoneStart;
+    const inHotZone = hotZoneStart !== undefined && v >= hotZoneStart;
+
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.strokeStyle = inRedZone ? CLR_REDZONE_TK : (inHotZone ? CLR_HOT_ZONE : CLR_TICK_MAJOR);
+    ctx.lineWidth = majorWidth;
+    ctx.stroke();
+  }
+
+  // Minor ticks
+  if (minorStep) {
+    for (let v = valMin; v <= valMax; v += minorStep) {
+      // Skip if this is a major tick position
+      if (Math.abs(v % majorStep) < 0.001 || Math.abs(v % majorStep - majorStep) < 0.001) continue;
+
+      const angleDeg = valueToAngle(v, valMin, valMax);
+      const angleRad = degToRad(angleDeg);
+      const cosA = Math.cos(angleRad);
+      const sinA = Math.sin(angleRad);
+
+      const x1 = cx + (r - minorLen) * cosA;
+      const y1 = cy - (r - minorLen) * sinA;
+      const x2 = cx + (r - 2) * cosA;
+      const y2 = cy - (r - 2) * sinA;
+
+      const inRedZone = redZoneStart !== undefined && v >= redZoneStart;
+
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.strokeStyle = inRedZone ? CLR_REDZONE_TK : CLR_TICK_MINOR;
+      ctx.lineWidth = minorWidth;
+      ctx.stroke();
+    }
+  }
+
+  // Numbers around circumference
+  if (numberFn) {
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    const fSize = fontSize || 22;
+    ctx.font = `bold ${fSize}px "DejaVu Sans", "Segoe UI", Arial, sans-serif`;
+
+    for (let v = valMin; v <= valMax; v += majorStep) {
+      const label = numberFn(v);
+      if (!label) continue;
+
+      const angleDeg = valueToAngle(v, valMin, valMax);
+      const angleRad = degToRad(angleDeg);
+      const nr = numberRadius || (r - majorLen - 16);
+      const nx = cx + nr * Math.cos(angleRad);
+      const ny = cy - nr * Math.sin(angleRad);
+
+      const inRedZone = redZoneStart !== undefined && v >= redZoneStart;
+      ctx.fillStyle = inRedZone ? CLR_REDZONE_TK : CLR_NUMBER;
+      ctx.fillText(label, nx, ny);
+    }
+  }
+
+  // Start/end labels (C/H for coolant, E/F for fuel)
+  if (startLabel) {
+    const sAngle = degToRad(valueToAngle(valMin, valMin, valMax));
+    const sR = numberRadius || (r - majorLen - 14);
+    ctx.font = `bold 16px "DejaVu Sans", Arial, sans-serif`;
+    ctx.fillStyle = coldZoneEnd !== undefined ? CLR_COLD_ZONE : CLR_RESERVE;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(startLabel, cx + sR * Math.cos(sAngle), cy - sR * Math.sin(sAngle));
+  }
+  if (endLabel) {
+    const eAngle = degToRad(valueToAngle(valMax, valMin, valMax));
+    const eR = numberRadius || (r - majorLen - 14);
+    ctx.font = `bold 16px "DejaVu Sans", Arial, sans-serif`;
+    ctx.fillStyle = hotZoneStart !== undefined ? CLR_HOT_ZONE : CLR_NUMBER;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(endLabel, cx + eR * Math.cos(eAngle), cy - eR * Math.sin(eAngle));
+  }
+
+  // Label text (e.g., "1/min × 1000", "km/h")
+  if (labelText) {
+    ctx.font = `11px "DejaVu Sans", Arial, sans-serif`;
+    ctx.fillStyle = CLR_DIM;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(labelText, cx, cy + r * 0.55);
+  }
+}
+
+// ── Draw Needle ──
+function drawNeedle(cx, cy, value, valMin, valMax, length, tailLen, baseWidth, tipWidth) {
+  const angleDeg = valueToAngle(value, valMin, valMax);
+  const angleRad = degToRad(angleDeg);
+  const cosA = Math.cos(angleRad);
+  const sinA = Math.sin(angleRad);
+
+  // Perpendicular for width
+  const perpX = -sinA;
+  const perpY = cosA;
+
+  // Tip point
+  const tipX = cx + length * cosA;
+  const tipY = cy - length * sinA;
+
+  // Tail point
+  const tailX = cx - tailLen * cosA;
+  const tailY = cy + tailLen * sinA;
+
+  // Base edges (at pivot)
+  const bHalf = baseWidth / 2;
+  const tHalf = tipWidth / 2;
+  const tailHalf = baseWidth / 2 + 1;
+
+  // Draw tapered needle shape
+  ctx.beginPath();
+  // Tail (counter-weight)
+  ctx.moveTo(tailX + perpX * tailHalf, tailY - perpY * tailHalf);
+  // Left side of needle to tip
+  ctx.lineTo(cx + perpX * bHalf, cy - perpY * bHalf);
+  ctx.lineTo(tipX + perpX * tHalf, tipY - perpY * tHalf);
+  // Tip point (sharp)
+  ctx.lineTo(tipX, tipY);
+  ctx.lineTo(tipX - perpX * tHalf, tipY + perpY * tHalf);
+  // Right side back to tail
+  ctx.lineTo(cx - perpX * bHalf, cy + perpY * bHalf);
+  ctx.lineTo(tailX - perpX * tailHalf, tailY + perpY * tailHalf);
+  ctx.closePath();
+
+  // Needle gradient (slight shading)
+  ctx.fillStyle = CLR_NEEDLE;
+  ctx.fill();
+
+  // Thin dark border for definition
+  ctx.strokeStyle = 'rgba(0,0,0,0.4)';
+  ctx.lineWidth = 0.5;
+  ctx.stroke();
+
+  // Counter-weight circle at tail
+  ctx.beginPath();
+  ctx.arc(tailX, tailY, tailHalf + 1, 0, Math.PI * 2);
+  ctx.fillStyle = CLR_NEEDLE_TAIL;
+  ctx.fill();
+}
+
+// ── Draw Center Cap ──
+function drawCenterCap(cx, cy, radius) {
+  // Outer rim
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius + 2, 0, Math.PI * 2);
+  ctx.fillStyle = CLR_CAP_RIM;
+  ctx.fill();
+
+  // Inner cap
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+  ctx.fillStyle = CLR_CENTER_CAP;
+  ctx.fill();
+
+  // Highlight dot
+  ctx.beginPath();
+  ctx.arc(cx - radius * 0.2, cy - radius * 0.2, radius * 0.25, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(255,255,255,0.08)';
+  ctx.fill();
+}
+
+// ── Draw Telltale ──
+function drawTelltale(x, y, label, active, activeColor) {
+  const w = 52, h = 30;
+
+  // Background
+  ctx.fillStyle = active ? shadeColor(activeColor, 0.15) : CLR_TELL_BG;
+  roundRect(ctx, x, y, w, h, 6);
+  ctx.fill();
+
+  // Border
+  ctx.strokeStyle = active ? activeColor : CLR_TELL_BORDER;
+  ctx.lineWidth = 1;
+  roundRect(ctx, x, y, w, h, 6);
+  ctx.stroke();
+
+  // Label
+  ctx.font = 'bold 12px "DejaVu Sans", Arial, sans-serif';
+  ctx.fillStyle = active ? activeColor : CLR_DIM;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(label, x + w / 2, y + h / 2);
+}
+
+function shadeColor(hex, mix) {
+  // Mix hex color with dark background
+  const r = parseInt(hex.slice(1,3), 16);
+  const g = parseInt(hex.slice(3,5), 16);
+  const b = parseInt(hex.slice(5,7), 16);
+  return `rgb(${Math.floor(r*mix+30*(1-mix))},${Math.floor(g*mix+30*(1-mix))},${Math.floor(b*mix+30*(1-mix))})`;
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+// ═══════════════════════════════════════════════════════════
+// RENDER THE COMPLETE CLUSTER
+// ═══════════════════════════════════════════════════════════
+
+// Background
+ctx.fillStyle = CLR_BG;
+ctx.fillRect(0, 0, W, H);
+
+// ── TACHOMETER ──
+drawDialFace(TACH, {
+  valMin: 0, valMax: 7000,
+  majorStep: 1000, minorStep: 200,
+  numberFn: v => v > 0 ? String(v / 1000) : null,
+  fontSize: 24,
+  numberRadius: TACH.r - 38,
+  majorLen: 20, minorLen: 12,
+  majorWidth: 3.0, minorWidth: 1.5,
+  redZoneStart: 6500,
+  labelText: '1/min × 1000'
+});
+
+drawNeedle(TACH.cx, TACH.cy, DEMO.rpm, 0, 7000, 160, 28, 8, 2.5);
+drawCenterCap(TACH.cx, TACH.cy, 12);
+
+// RPM digital readout
+ctx.font = 'bold 28px "DejaVu Sans", Arial, sans-serif';
+ctx.fillStyle = CLR_LCD_TEXT;
+ctx.textAlign = 'center';
+ctx.textBaseline = 'middle';
+ctx.fillText(String(DEMO.rpm), TACH.cx, TACH.cy + 75);
+
+ctx.font = '11px "DejaVu Sans", Arial, sans-serif';
+ctx.fillStyle = CLR_DIM;
+ctx.fillText('RPM', TACH.cx, TACH.cy + 95);
+
+// ── SPEEDOMETER ──
+drawDialFace(SPEED, {
+  valMin: 0, valMax: 240,
+  majorStep: 20, minorStep: 10,
+  numberFn: v => v > 0 ? String(v) : null,
+  fontSize: 17,
+  numberRadius: SPEED.r - 38,
+  majorLen: 20, minorLen: 12,
+  majorWidth: 3.0, minorWidth: 1.5,
+  labelText: 'km/h'
+});
+
+drawNeedle(SPEED.cx, SPEED.cy, DEMO.speed, 0, 240, 160, 28, 8, 2.5);
+drawCenterCap(SPEED.cx, SPEED.cy, 12);
+
+// Speed digital readout
+ctx.font = 'bold 28px "DejaVu Sans", Arial, sans-serif';
+ctx.fillStyle = CLR_LCD_TEXT;
+ctx.textAlign = 'center';
+ctx.fillText(String(DEMO.speed), SPEED.cx, SPEED.cy + 65);
+
+// Gear indicator
+ctx.font = 'bold 22px "DejaVu Sans", Arial, sans-serif';
+ctx.fillStyle = CLR_GEAR_GREEN;
+ctx.fillText(DEMO.gear === 0 ? 'N' : String(DEMO.gear), SPEED.cx, SPEED.cy + 92);
+
+// ── COOLANT TEMPERATURE ──
+const coolNorm = ((DEMO.coolant - 40) / 90) * 100; // 40-130C → 0-100
+drawDialFace(COOL, {
+  valMin: 0, valMax: 100,
+  majorStep: 12.5, minorStep: null,
+  majorLen: 14, minorLen: 8,
+  majorWidth: 2.5, minorWidth: 1.0,
+  numberRadius: COOL.r - 24,
+  coldZoneEnd: 25,
+  hotZoneStart: 75,
+  startLabel: 'C',
+  endLabel: 'H',
+  labelText: null
+});
+
+drawNeedle(COOL.cx, COOL.cy, coolNorm, 0, 100, 55, 14, 5, 2);
+drawCenterCap(COOL.cx, COOL.cy, 7);
+
+// Coolant title
+ctx.font = 'bold 12px "DejaVu Sans", Arial, sans-serif';
+ctx.fillStyle = CLR_DIM;
+ctx.textAlign = 'center';
+ctx.fillText('COOLANT', COOL.cx, COOL.cy - COOL.r - 12);
+
+// Coolant value
+ctx.font = 'bold 14px "DejaVu Sans", Arial, sans-serif';
+ctx.fillStyle = '#E8E8E8';
+ctx.fillText(DEMO.coolant + '°C', COOL.cx, COOL.cy + 42);
+
+// ── FUEL GAUGE ──
+drawDialFace(FUEL, {
+  valMin: 0, valMax: 100,
+  majorStep: 12.5, minorStep: null,
+  majorLen: 14, minorLen: 8,
+  majorWidth: 2.5, minorWidth: 1.0,
+  numberRadius: FUEL.r - 24,
+  reserveEnd: 15,
+  startLabel: 'E',
+  endLabel: 'F',
+  labelText: null
+});
+
+drawNeedle(FUEL.cx, FUEL.cy, DEMO.fuel, 0, 100, 55, 14, 5, 2);
+drawCenterCap(FUEL.cx, FUEL.cy, 7);
+
+// Fuel title
+ctx.font = 'bold 12px "DejaVu Sans", Arial, sans-serif';
+ctx.fillStyle = CLR_DIM;
+ctx.fillText('FUEL', FUEL.cx, FUEL.cy - FUEL.r - 12);
+
+// Fuel value
+ctx.font = 'bold 14px "DejaVu Sans", Arial, sans-serif';
+ctx.fillStyle = '#E8E8E8';
+ctx.fillText(DEMO.fuel + '%', FUEL.cx, FUEL.cy + 42);
+
+// ── ODOMETER (LCD between dials) ──
+const odoX = W / 2, odoY = 375;
+// LCD background
+roundRect(ctx, odoX - 72, odoY - 14, 144, 28, 4);
+ctx.fillStyle = '#0A0A0A';
+ctx.fill();
+ctx.strokeStyle = '#2A2A2A';
+ctx.lineWidth = 1;
+roundRect(ctx, odoX - 72, odoY - 14, 144, 28, 4);
+ctx.stroke();
+
+ctx.font = '16px "Courier New", monospace';
+ctx.fillStyle = CLR_LCD_TEXT;
+ctx.textAlign = 'center';
+ctx.textBaseline = 'middle';
+ctx.fillText('123456 km', odoX, odoY);
+
+// ── TELLTALES (top center row) ──
+const tellY = 18;
+const tellGap = 60;
+const tellStart = W / 2 - (5 * tellGap) / 2;
+
+drawTelltale(tellStart + 0 * tellGap, tellY, 'ENG',  false, CLR_WARN_YELLOW);
+drawTelltale(tellStart + 1 * tellGap, tellY, 'OIL',  false, CLR_WARN_RED);
+drawTelltale(tellStart + 2 * tellGap, tellY, 'BAT',  false, CLR_WARN_RED);
+drawTelltale(tellStart + 3 * tellGap, tellY, 'ABS',  false, CLR_WARN_YELLOW);
+drawTelltale(tellStart + 4 * tellGap, tellY, 'ESP',  false, CLR_WARN_YELLOW);
+
+// ── STATUS BAR ──
+ctx.font = '13px "DejaVu Sans", Arial, sans-serif';
+ctx.fillStyle = CLR_DIM;
+ctx.textAlign = 'center';
+ctx.fillText('BMW MS41 — 3200 RPM  85 km/h  72°C  13.8V', W / 2, H - 16);
+
+</script>
+</body>
+</html>

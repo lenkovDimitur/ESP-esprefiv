@@ -24,7 +24,7 @@ from config import SCREEN_W, SCREEN_H, FPS, FULLSCREEN, POLL_INTERVAL_S
 from config import INIT_DELAY_S, RECONNECT_INTERVAL_S
 from kline.kline_uart import KLineUART
 from kline.ms41 import MS41, MS41LiveData
-from display.cluster_screen import ClusterScreen
+from display.e36_cluster_screen import E36ClusterScreen
 
 
 class App:
@@ -210,7 +210,7 @@ class App:
             pygame.mouse.set_visible(False)
 
         clock = pygame.time.Clock()
-        cluster = ClusterScreen()
+        cluster = E36ClusterScreen()
 
         # Start K-Line polling in background thread
         kline_t = threading.Thread(target=self._kline_thread, daemon=True)

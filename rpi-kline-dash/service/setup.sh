@@ -21,13 +21,14 @@ apt-get update -qq
 apt-get install -y \
     python3 python3-pip python3-venv \
     python3-pygame python3-serial python3-rpi.gpio \
-    libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev \
+    python3-cairo python3-numpy \
+    libcairo2-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev \
     fonts-dejavu-core
 
 # ---- 2. Python packages (in case system packages are old) ----
 echo "[2/6] Installing Python packages..."
-pip3 install --break-system-packages pyserial RPi.GPIO 2>/dev/null \
-    || pip3 install pyserial RPi.GPIO
+pip3 install --break-system-packages pyserial RPi.GPIO pycairo numpy 2>/dev/null \
+    || pip3 install pyserial RPi.GPIO pycairo numpy
 
 # ---- 3. Disable serial console (free up UART for K-Line) ----
 echo "[3/6] Configuring UART for K-Line..."
