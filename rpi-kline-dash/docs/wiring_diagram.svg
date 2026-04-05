@@ -1,345 +1,553 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 850" font-family="'Segoe UI', 'DejaVu Sans', Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1150" font-family="'Segoe UI', 'DejaVu Sans', Arial, sans-serif">
   <defs>
-    <!-- Arrowhead marker -->
-    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#E0E0E0"/>
-    </marker>
-    <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#FF4444"/>
-    </marker>
-    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#4488FF"/>
-    </marker>
-    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#44CC44"/>
-    </marker>
-    <marker id="arrow-yellow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#FFAA00"/>
-    </marker>
-    <marker id="arrow-bidi" markerWidth="10" markerHeight="7" refX="5" refY="3.5" orient="auto">
-      <polygon points="0 3.5, 5 0, 10 3.5, 5 7" fill="#FFAA00"/>
-    </marker>
-
-    <!-- Drop shadow filter -->
-    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
-      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.4"/>
-    </filter>
-
-    <!-- Glow for power -->
-    <filter id="glow-red">
-      <feGaussianBlur stdDeviation="2" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#E0E0E0"/></marker>
+    <marker id="arr-r" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#FF4444"/></marker>
+    <marker id="arr-g" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#44CC44"/></marker>
+    <marker id="arr-b" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#4488FF"/></marker>
+    <marker id="arr-y" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#FFAA00"/></marker>
+    <marker id="arr-p" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#CC88FF"/></marker>
+    <filter id="sh" x="-4%" y="-4%" width="112%" height="112%"><feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.5"/></filter>
   </defs>
 
-  <!-- ═══ Background ═══ -->
-  <rect width="1200" height="850" fill="#1A1A2E" rx="12"/>
+  <!-- Background -->
+  <rect width="1400" height="1150" fill="#12121F" rx="12"/>
 
   <!-- Title -->
-  <text x="600" y="40" text-anchor="middle" fill="#E8E8E8" font-size="22" font-weight="bold">BMW MS41 K-Line Gauge Cluster — Wiring Diagram</text>
-  <text x="600" y="62" text-anchor="middle" fill="#888" font-size="13">Raspberry Pi Zero 2 W  ·  L9637D Transceiver  ·  DS2 Protocol over ISO 9141 K-Line</text>
+  <text x="700" y="38" text-anchor="middle" fill="#E8E8E8" font-size="24" font-weight="bold">BMW MS41 K-Line Gauge Cluster — Detailed Wiring Diagram</text>
+  <text x="700" y="60" text-anchor="middle" fill="#777" font-size="13">Raspberry Pi Zero 2 W  ·  L9637D K-Line Transceiver  ·  Waveshare 7" 1024x600 HDMI  ·  DS2 over ISO 9141</text>
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- OBD-II CONNECTOR (left side) -->
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <g transform="translate(60, 160)">
-    <rect x="0" y="0" width="220" height="280" rx="10" fill="#16213E" stroke="#334" stroke-width="2" filter="url(#shadow)"/>
-    <!-- Connector shape -->
-    <rect x="30" y="20" width="160" height="60" rx="8" fill="#0D1117" stroke="#555" stroke-width="1.5"/>
-    <!-- Pin holes row 1 -->
-    <g fill="#333" stroke="#666" stroke-width="0.8">
-      <circle cx="55" cy="38" r="5"/><text x="55" y="42" text-anchor="middle" fill="#888" font-size="7">1</text>
-      <circle cx="75" cy="38" r="5"/><text x="75" y="42" text-anchor="middle" fill="#888" font-size="7">2</text>
-      <circle cx="95" cy="38" r="5"/><text x="95" y="42" text-anchor="middle" fill="#888" font-size="7">3</text>
-      <circle cx="115" cy="38" r="5" fill="#444" stroke="#888"/><text x="115" y="42" text-anchor="middle" fill="#CCC" font-size="7" font-weight="bold">4</text>
-      <circle cx="135" cy="38" r="5" fill="#444" stroke="#888"/><text x="135" y="42" text-anchor="middle" fill="#CCC" font-size="7" font-weight="bold">5</text>
-      <circle cx="155" cy="38" r="5"/><text x="155" y="42" text-anchor="middle" fill="#888" font-size="7">6</text>
-      <circle cx="170" cy="38" r="5" fill="#553300" stroke="#FFAA00" stroke-width="1.5"/><text x="170" y="42" text-anchor="middle" fill="#FFAA00" font-size="7" font-weight="bold">7</text>
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!--  OBD-II CONNECTOR — Full 16-pin J1962 pinout                  -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <g transform="translate(40, 90)">
+    <rect x="0" y="0" width="310" height="390" rx="10" fill="#16213E" stroke="#2A3A5E" stroke-width="2" filter="url(#sh)"/>
+    <text x="155" y="24" text-anchor="middle" fill="#CCC" font-size="15" font-weight="bold">OBD-II Connector (J1962)</text>
+
+    <!-- Trapezoidal connector shape -->
+    <path d="M 55,38 L 255,38 L 270,80 L 40,80 Z" fill="#0A0E18" stroke="#444" stroke-width="1.5" rx="4"/>
+    <!-- Row 1: pins 1-8 -->
+    <g font-size="7" text-anchor="middle">
+      <circle cx="75"  cy="52" r="5" fill="#222" stroke="#555"/><text x="75"  y="55" fill="#666">1</text>
+      <circle cx="95"  cy="52" r="5" fill="#222" stroke="#555"/><text x="95"  y="55" fill="#666">2</text>
+      <circle cx="115" cy="52" r="5" fill="#222" stroke="#555"/><text x="115" y="55" fill="#666">3</text>
+      <circle cx="135" cy="52" r="5" fill="#383838" stroke="#AAA"/><text x="135" y="55" fill="#EEE" font-weight="bold">4</text>
+      <circle cx="155" cy="52" r="5" fill="#383838" stroke="#AAA"/><text x="155" y="55" fill="#EEE" font-weight="bold">5</text>
+      <circle cx="175" cy="52" r="5" fill="#222" stroke="#555"/><text x="175" y="55" fill="#666">6</text>
+      <circle cx="195" cy="52" r="5" fill="#443300" stroke="#FFAA00" stroke-width="1.5"/><text x="195" y="55" fill="#FFCC00" font-weight="bold">7</text>
+      <circle cx="215" cy="52" r="5" fill="#222" stroke="#555"/><text x="215" y="55" fill="#666">8</text>
     </g>
-    <!-- Pin holes row 2 -->
-    <g fill="#333" stroke="#666" stroke-width="0.8">
-      <circle cx="65" cy="60" r="5"/><text x="65" y="64" text-anchor="middle" fill="#888" font-size="7">9</text>
-      <circle cx="85" cy="60" r="5"/><text x="85" y="64" text-anchor="middle" fill="#888" font-size="7">10</text>
-      <circle cx="105" cy="60" r="5"/><text x="105" y="64" text-anchor="middle" fill="#888" font-size="7">14</text>
-      <circle cx="125" cy="60" r="5"/><text x="125" y="64" text-anchor="middle" fill="#888" font-size="7">15</text>
-      <circle cx="155" cy="60" r="5" fill="#440000" stroke="#FF4444" stroke-width="1.5"/><text x="155" y="64" text-anchor="middle" fill="#FF4444" font-size="7" font-weight="bold">16</text>
-    </g>
-
-    <text x="110" y="105" text-anchor="middle" fill="#CCC" font-size="14" font-weight="bold">OBD-II (J1962)</text>
-
-    <!-- Pin descriptions -->
-    <g font-size="11" fill="#AAA">
-      <rect x="12" y="118" width="196" height="24" rx="4" fill="#0D1117"/>
-      <circle cx="24" cy="130" r="5" fill="#440000" stroke="#FF4444" stroke-width="1"/>
-      <text x="36" y="134" fill="#FF6666">Pin 16</text>
-      <text x="95" y="134" fill="#AAA">+12V Battery (permanent)</text>
-
-      <rect x="12" y="148" width="196" height="24" rx="4" fill="#0D1117"/>
-      <circle cx="24" cy="160" r="5" fill="#553300" stroke="#FFAA00" stroke-width="1"/>
-      <text x="36" y="164" fill="#FFCC44">Pin 7</text>
-      <text x="82" y="164" fill="#AAA">K-Line (ISO 9141)</text>
-
-      <rect x="12" y="178" width="196" height="24" rx="4" fill="#0D1117"/>
-      <circle cx="24" cy="190" r="5" fill="#222" stroke="#888" stroke-width="1"/>
-      <text x="36" y="194" fill="#999">Pin 4/5</text>
-      <text x="92" y="194" fill="#AAA">Chassis / Signal GND</text>
+    <!-- Row 2: pins 9-16 -->
+    <g font-size="7" text-anchor="middle">
+      <circle cx="85"  cy="70" r="5" fill="#222" stroke="#555"/><text x="85"  y="73" fill="#666">9</text>
+      <circle cx="105" cy="70" r="5" fill="#222" stroke="#555"/><text x="105" y="73" fill="#666">10</text>
+      <circle cx="125" cy="70" r="5" fill="#222" stroke="#555"/><text x="125" y="73" fill="#666">11</text>
+      <circle cx="145" cy="70" r="5" fill="#222" stroke="#555"/><text x="145" y="73" fill="#666">12</text>
+      <circle cx="165" cy="70" r="5" fill="#222" stroke="#555"/><text x="165" y="73" fill="#666">13</text>
+      <circle cx="185" cy="70" r="5" fill="#222" stroke="#555"/><text x="185" y="73" fill="#666">14</text>
+      <circle cx="205" cy="70" r="5" fill="#222" stroke="#555"/><text x="205" y="73" fill="#666">15</text>
+      <circle cx="225" cy="70" r="5" fill="#440000" stroke="#FF4444" stroke-width="1.5"/><text x="225" y="73" fill="#FF6666" font-weight="bold">16</text>
     </g>
 
-    <!-- Car label -->
-    <text x="110" y="225" text-anchor="middle" fill="#666" font-size="10">Connects to BMW E36</text>
-    <text x="110" y="240" text-anchor="middle" fill="#666" font-size="10">under dashboard</text>
+    <!-- Full pin table -->
+    <text x="15" y="102" fill="#8899BB" font-size="11" font-weight="bold">Pin Table</text>
+    <g font-size="10">
+      <!-- Header -->
+      <rect x="10" y="108" width="290" height="16" rx="2" fill="#1A2444"/>
+      <text x="30" y="120" fill="#99AACC" font-weight="bold">Pin</text>
+      <text x="70" y="120" fill="#99AACC" font-weight="bold">Function</text>
+      <text x="200" y="120" fill="#99AACC" font-weight="bold">Used</text>
 
-    <!-- BMW Logo placeholder -->
-    <circle cx="110" cy="262" r="14" fill="none" stroke="#4488CC" stroke-width="1.5"/>
-    <text x="110" y="267" text-anchor="middle" fill="#4488CC" font-size="10" font-weight="bold">BMW</text>
+      <text x="30" y="138" fill="#555">1</text><text x="70" y="138" fill="#666">Vendor option</text><text x="210" y="138" fill="#555">—</text>
+      <text x="30" y="152" fill="#555">2</text><text x="70" y="152" fill="#666">SAE J1850 Bus+</text><text x="210" y="152" fill="#555">—</text>
+      <text x="30" y="166" fill="#555">3</text><text x="70" y="166" fill="#666">Vendor option</text><text x="210" y="166" fill="#555">—</text>
+
+      <rect x="10" y="171" width="290" height="16" rx="2" fill="#111828"/>
+      <text x="30" y="183" fill="#CCC" font-weight="bold">4</text><text x="70" y="183" fill="#CCC">Chassis Ground</text><text x="200" y="183" fill="#44CC44" font-weight="bold">GND</text>
+
+      <rect x="10" y="187" width="290" height="16" rx="2" fill="#111828"/>
+      <text x="30" y="199" fill="#CCC" font-weight="bold">5</text><text x="70" y="199" fill="#CCC">Signal Ground</text><text x="200" y="199" fill="#44CC44" font-weight="bold">GND</text>
+
+      <text x="30" y="216" fill="#555">6</text><text x="70" y="216" fill="#666">CAN High (ISO 15765)</text><text x="210" y="216" fill="#555">—</text>
+
+      <rect x="10" y="221" width="290" height="16" rx="2" fill="#1A1800"/>
+      <text x="30" y="233" fill="#FFCC00" font-weight="bold">7</text><text x="70" y="233" fill="#FFCC00" font-weight="bold">K-Line (ISO 9141)</text><text x="200" y="233" fill="#FFCC00" font-weight="bold">K-LINE</text>
+
+      <text x="30" y="250" fill="#555">8</text><text x="70" y="250" fill="#666">Vendor option</text><text x="210" y="250" fill="#555">—</text>
+      <text x="30" y="264" fill="#555">9-13</text><text x="70" y="264" fill="#666">Vendor / CAN / L-Line</text><text x="210" y="264" fill="#555">—</text>
+      <text x="30" y="278" fill="#555">14</text><text x="70" y="278" fill="#666">CAN Low (ISO 15765)</text><text x="210" y="278" fill="#555">—</text>
+      <text x="30" y="292" fill="#555">15</text><text x="70" y="292" fill="#666">L-Line (ISO 9141)</text><text x="210" y="292" fill="#555">—</text>
+
+      <rect x="10" y="297" width="290" height="16" rx="2" fill="#1A0808"/>
+      <text x="30" y="309" fill="#FF6666" font-weight="bold">16</text><text x="70" y="309" fill="#FF6666" font-weight="bold">Battery +12V (permanent)</text><text x="200" y="309" fill="#FF6666" font-weight="bold">+12V</text>
+    </g>
+
+    <text x="155" y="335" text-anchor="middle" fill="#556688" font-size="9">BMW E36: under dashboard, driver side</text>
+    <text x="155" y="350" text-anchor="middle" fill="#556688" font-size="9">K-Line on Pin 7 connects to MS41 DME</text>
+
+    <!-- BMW badge -->
+    <circle cx="155" cy="375" r="12" fill="none" stroke="#4488CC" stroke-width="1.2"/>
+    <text x="155" y="379" text-anchor="middle" fill="#4488CC" font-size="8" font-weight="bold">BMW</text>
   </g>
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- 12V to 5V BUCK CONVERTER (top center) -->
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <g transform="translate(380, 120)">
-    <rect x="0" y="0" width="200" height="110" rx="8" fill="#2D1B00" stroke="#885500" stroke-width="2" filter="url(#shadow)"/>
-    <text x="100" y="24" text-anchor="middle" fill="#FFAA44" font-size="13" font-weight="bold">12V → 5V Buck</text>
-    <text x="100" y="42" text-anchor="middle" fill="#CC8833" font-size="11">LM2596 Module</text>
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!--  L9637D — Full IC pinout (8-pin SO-8 / DIP-8)                 -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <g transform="translate(440, 90)">
+    <rect x="0" y="0" width="300" height="390" rx="10" fill="#142214" stroke="#2A5A2A" stroke-width="2" filter="url(#sh)"/>
+    <text x="150" y="24" text-anchor="middle" fill="#CCC" font-size="15" font-weight="bold">L9637D K-Line Transceiver</text>
+    <text x="150" y="40" text-anchor="middle" fill="#558855" font-size="10">STMicroelectronics · SO-8 Package</text>
 
-    <!-- Input -->
-    <rect x="12" y="52" width="80" height="22" rx="4" fill="#1A0D00"/>
-    <text x="52" y="67" text-anchor="middle" fill="#FF6666" font-size="11">IN: +12V</text>
+    <!-- IC chip drawing -->
+    <rect x="65" y="55" width="170" height="100" rx="6" fill="#0A110A" stroke="#448844" stroke-width="2"/>
+    <circle cx="82" cy="68" r="4" fill="#224422"/>
+    <text x="150" y="95" text-anchor="middle" fill="#66CC66" font-size="18" font-weight="bold">L9637D</text>
+    <text x="150" y="115" text-anchor="middle" fill="#448844" font-size="10">ISO 9141 Interface</text>
 
-    <!-- Output -->
-    <rect x="108" y="52" width="80" height="22" rx="4" fill="#1A0D00"/>
-    <text x="148" y="67" text-anchor="middle" fill="#44CC44" font-size="11">OUT: +5V</text>
+    <!-- Pin dots on IC sides -->
+    <!-- Left side pins 1-4 -->
+    <circle cx="65" cy="72" r="3" fill="#66CC66"/><text x="55" y="76" text-anchor="end" fill="#88CC88" font-size="9" font-weight="bold">1</text>
+    <circle cx="65" cy="90" r="3" fill="#66CC66"/><text x="55" y="94" text-anchor="end" fill="#88CC88" font-size="9" font-weight="bold">2</text>
+    <circle cx="65" cy="108" r="3" fill="#66CC66"/><text x="55" y="112" text-anchor="end" fill="#88CC88" font-size="9" font-weight="bold">3</text>
+    <circle cx="65" cy="126" r="3" fill="#66CC66"/><text x="55" y="130" text-anchor="end" fill="#88CC88" font-size="9" font-weight="bold">4</text>
+    <!-- Right side pins 5-8 -->
+    <circle cx="235" cy="126" r="3" fill="#66CC66"/><text x="245" y="130" fill="#88CC88" font-size="9" font-weight="bold">5</text>
+    <circle cx="235" cy="108" r="3" fill="#66CC66"/><text x="245" y="112" fill="#88CC88" font-size="9" font-weight="bold">6</text>
+    <circle cx="235" cy="90" r="3" fill="#66CC66"/><text x="245" y="94" fill="#88CC88" font-size="9" font-weight="bold">7</text>
+    <circle cx="235" cy="72" r="3" fill="#66CC66"/><text x="245" y="76" fill="#88CC88" font-size="9" font-weight="bold">8</text>
 
-    <!-- GND -->
-    <rect x="12" y="80" width="176" height="20" rx="4" fill="#1A0D00"/>
-    <text x="100" y="94" text-anchor="middle" fill="#999" font-size="10">GND pass-through</text>
-  </g>
+    <!-- Full pin table -->
+    <text x="15" y="178" fill="#88AA88" font-size="11" font-weight="bold">Pin Table (SO-8 / DIP-8)</text>
+    <g font-size="10">
+      <rect x="10" y="184" width="280" height="16" rx="2" fill="#0D1A0D"/>
+      <text x="25" y="196" fill="#88CC88" font-weight="bold">Pin</text>
+      <text x="55" y="196" fill="#88CC88" font-weight="bold">Name</text>
+      <text x="110" y="196" fill="#88CC88" font-weight="bold">Function</text>
+      <text x="230" y="196" fill="#88CC88" font-weight="bold">Connect</text>
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- L9637D TRANSCEIVER (center) -->
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <g transform="translate(380, 310)">
-    <rect x="0" y="0" width="220" height="260" rx="10" fill="#1B2A1B" stroke="#336633" stroke-width="2" filter="url(#shadow)"/>
+      <rect x="10" y="202" width="280" height="16" rx="2" fill="#0A140A"/>
+      <text x="25" y="214" fill="#CCDDCC" font-weight="bold">1</text>
+      <text x="55" y="214" fill="#CCDDCC" font-weight="bold">TX</text>
+      <text x="110" y="214" fill="#AAA">UART Data In (from MCU)</text>
+      <text x="230" y="214" fill="#4488FF" font-weight="bold">GPIO14</text>
 
-    <!-- IC body -->
-    <rect x="40" y="18" width="140" height="80" rx="6" fill="#0D1117" stroke="#448844" stroke-width="1.5"/>
-    <circle cx="58" cy="30" r="3" fill="#336633"/>
-    <text x="110" y="50" text-anchor="middle" fill="#66CC66" font-size="15" font-weight="bold">L9637D</text>
-    <text x="110" y="68" text-anchor="middle" fill="#448844" font-size="10">K-Line Transceiver</text>
+      <rect x="10" y="220" width="280" height="16" rx="2" fill="#0D1A0D"/>
+      <text x="25" y="232" fill="#CCDDCC" font-weight="bold">2</text>
+      <text x="55" y="232" fill="#CCDDCC" font-weight="bold">GND</text>
+      <text x="110" y="232" fill="#AAA">Ground</text>
+      <text x="230" y="232" fill="#999">Common</text>
 
-    <!-- Pin descriptions -->
-    <g font-size="11">
-      <rect x="14" y="110" width="192" height="22" rx="4" fill="#0D1117"/>
-      <text x="30" y="125" fill="#66CC66" font-weight="bold">VCC</text>
-      <text x="65" y="125" fill="#AAA">← 5V from buck converter</text>
+      <rect x="10" y="238" width="280" height="16" rx="2" fill="#0A140A"/>
+      <text x="25" y="250" fill="#CCDDCC" font-weight="bold">3</text>
+      <text x="55" y="250" fill="#CCDDCC" font-weight="bold">RX</text>
+      <text x="110" y="250" fill="#AAA">UART Data Out (to MCU)</text>
+      <text x="230" y="250" fill="#44AAFF" font-weight="bold">GPIO15</text>
 
-      <rect x="14" y="137" width="192" height="22" rx="4" fill="#0D1117"/>
-      <text x="30" y="152" fill="#999" font-weight="bold">GND</text>
-      <text x="68" y="152" fill="#AAA">← Common ground</text>
+      <rect x="10" y="256" width="280" height="16" rx="2" fill="#0D1A0D"/>
+      <text x="25" y="268" fill="#CCDDCC" font-weight="bold">4</text>
+      <text x="55" y="268" fill="#CCDDCC" font-weight="bold">EN</text>
+      <text x="110" y="268" fill="#AAA">Enable (active high)</text>
+      <text x="230" y="268" fill="#44CC44" font-weight="bold">5V (tied)</text>
 
-      <rect x="14" y="164" width="192" height="22" rx="4" fill="#0D1117"/>
-      <text x="30" y="179" fill="#66CC66" font-weight="bold">EN</text>
-      <text x="58" y="179" fill="#AAA">← 5V (always enabled)</text>
+      <rect x="10" y="274" width="280" height="16" rx="2" fill="#0A140A"/>
+      <text x="25" y="286" fill="#CCDDCC" font-weight="bold">5</text>
+      <text x="55" y="286" fill="#CCDDCC" font-weight="bold">SENS</text>
+      <text x="110" y="286" fill="#AAA">K-Line Sense input</text>
+      <text x="230" y="286" fill="#FFAA00" font-weight="bold">K-Line</text>
 
-      <rect x="14" y="191" width="192" height="22" rx="4" fill="#0D1117"/>
-      <text x="30" y="206" fill="#4488FF" font-weight="bold">TX</text>
-      <text x="55" y="206" fill="#AAA">← Pi GPIO14 (UART TX)</text>
+      <rect x="10" y="292" width="280" height="16" rx="2" fill="#0D1A0D"/>
+      <text x="25" y="304" fill="#CCDDCC" font-weight="bold">6</text>
+      <text x="55" y="304" fill="#CCDDCC" font-weight="bold">BUS</text>
+      <text x="110" y="304" fill="#AAA">K-Line Bus driver</text>
+      <text x="230" y="304" fill="#FFAA00" font-weight="bold">K-Line</text>
 
-      <rect x="14" y="218" width="192" height="22" rx="4" fill="#0D1117"/>
-      <text x="30" y="233" fill="#44AAFF" font-weight="bold">RX</text>
-      <text x="55" y="233" fill="#AAA">→ Pi GPIO15 (UART RX)</text>
+      <rect x="10" y="310" width="280" height="16" rx="2" fill="#0A140A"/>
+      <text x="25" y="322" fill="#CCDDCC" font-weight="bold">7</text>
+      <text x="55" y="322" fill="#CCDDCC" font-weight="bold">VCC</text>
+      <text x="110" y="322" fill="#AAA">Supply voltage (5V)</text>
+      <text x="230" y="322" fill="#44CC44" font-weight="bold">5V Buck</text>
+
+      <rect x="10" y="328" width="280" height="16" rx="2" fill="#0D1A0D"/>
+      <text x="25" y="340" fill="#CCDDCC" font-weight="bold">8</text>
+      <text x="55" y="340" fill="#CCDDCC" font-weight="bold">INH</text>
+      <text x="110" y="340" fill="#AAA">Inhibit (not used)</text>
+      <text x="230" y="340" fill="#555">N/C</text>
     </g>
 
-    <!-- Bypass cap note -->
-    <text x="110" y="255" text-anchor="middle" fill="#558855" font-size="9">100nF ceramic bypass on VCC-GND</text>
+    <!-- Notes -->
+    <text x="150" y="362" text-anchor="middle" fill="#558855" font-size="9">100nF ceramic cap between VCC (pin 7) and GND (pin 2)</text>
+    <text x="150" y="376" text-anchor="middle" fill="#558855" font-size="9">Pins 5+6 connect together to OBD Pin 7 (K-Line)</text>
+    <text x="150" y="388" text-anchor="middle" fill="#446644" font-size="8">3.3V logic on TX/RX ↔ 12V on K-Line bus</text>
   </g>
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- RASPBERRY PI ZERO 2 W (right side) -->
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <g transform="translate(720, 270)">
-    <rect x="0" y="0" width="260" height="310" rx="10" fill="#1B1B2E" stroke="#4444AA" stroke-width="2" filter="url(#shadow)"/>
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!--  RASPBERRY PI ZERO 2 W — GPIO header pinout                   -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <g transform="translate(820, 90)">
+    <rect x="0" y="0" width="540" height="390" rx="10" fill="#1A1A30" stroke="#3333AA" stroke-width="2" filter="url(#sh)"/>
+    <text x="270" y="24" text-anchor="middle" fill="#CCC" font-size="15" font-weight="bold">Raspberry Pi Zero 2 W — GPIO Header (J8)</text>
+    <text x="270" y="40" text-anchor="middle" fill="#6666AA" font-size="10">BCM2710A1 · Quad Cortex-A53 @ 1GHz · 512MB · /dev/ttyAMA0</text>
 
-    <!-- Board shape -->
-    <rect x="20" y="16" width="220" height="130" rx="8" fill="#1A5C1A" stroke="#2A7A2A" stroke-width="1.5"/>
-    <!-- CPU -->
-    <rect x="100" y="50" width="50" height="50" rx="4" fill="#222" stroke="#555" stroke-width="1"/>
-    <text x="125" y="78" text-anchor="middle" fill="#AAA" font-size="8">BCM2710</text>
-    <text x="125" y="88" text-anchor="middle" fill="#888" font-size="7">Cortex-A53</text>
-    <!-- WiFi chip -->
-    <rect x="170" y="30" width="30" height="20" rx="3" fill="#333" stroke="#555" stroke-width="0.8"/>
-    <text x="185" y="43" text-anchor="middle" fill="#888" font-size="6">WiFi</text>
-    <!-- microSD -->
-    <rect x="25" y="110" width="40" height="25" rx="3" fill="#333" stroke="#666" stroke-width="1"/>
-    <text x="45" y="126" text-anchor="middle" fill="#999" font-size="7">μSD</text>
-    <!-- Mini HDMI port -->
-    <rect x="80" y="130" width="30" height="16" rx="2" fill="#444" stroke="#888" stroke-width="1"/>
-    <text x="95" y="142" text-anchor="middle" fill="#CCC" font-size="6">HDMI</text>
-    <!-- USB power -->
-    <rect x="130" y="130" width="24" height="16" rx="2" fill="#444" stroke="#888" stroke-width="1"/>
-    <text x="142" y="142" text-anchor="middle" fill="#CCC" font-size="6">μUSB</text>
-    <!-- GPIO header -->
-    <rect x="25" y="25" width="60" height="12" rx="2" fill="#333" stroke="#FFD700" stroke-width="1"/>
-    <text x="55" y="34" text-anchor="middle" fill="#FFD700" font-size="7">GPIO Header</text>
+    <!-- GPIO 40-pin header table -->
+    <text x="15" y="60" fill="#8888CC" font-size="11" font-weight="bold">40-Pin Header (active pins highlighted)</text>
+    <g font-size="9">
+      <!-- Column headers -->
+      <rect x="10" y="66" width="520" height="14" rx="2" fill="#15152A"/>
+      <text x="40" y="77" text-anchor="middle" fill="#8888CC" font-weight="bold">Phys</text>
+      <text x="95" y="77" text-anchor="middle" fill="#8888CC" font-weight="bold">Function</text>
+      <text x="170" y="77" text-anchor="middle" fill="#8888CC" font-weight="bold">BCM</text>
+      <text x="220" y="77" fill="#8888CC">│</text>
+      <text x="265" y="77" text-anchor="middle" fill="#8888CC" font-weight="bold">BCM</text>
+      <text x="340" y="77" text-anchor="middle" fill="#8888CC" font-weight="bold">Function</text>
+      <text x="415" y="77" text-anchor="middle" fill="#8888CC" font-weight="bold">Phys</text>
+      <text x="475" y="77" text-anchor="middle" fill="#8888CC" font-weight="bold">Used</text>
 
-    <text x="130" y="170" text-anchor="middle" fill="#CCC" font-size="14" font-weight="bold">Raspberry Pi Zero 2 W</text>
-    <text x="130" y="186" text-anchor="middle" fill="#888" font-size="10">1GHz Quad-Core · 512MB RAM</text>
+      <!-- Row 1: Pin 1,2 — 3.3V / 5V -->
+      <rect x="10" y="82" width="520" height="14" rx="2" fill="#12121F"/>
+      <text x="40" y="93" text-anchor="middle" fill="#FF8800" font-weight="bold">1</text>
+      <text x="95" y="93" text-anchor="middle" fill="#FF8800">3V3 Power</text>
+      <text x="170" y="93" text-anchor="middle" fill="#666">—</text>
+      <text x="220" y="93" fill="#333">│</text>
+      <text x="265" y="93" text-anchor="middle" fill="#666">—</text>
+      <text x="340" y="93" text-anchor="middle" fill="#FF4444" font-weight="bold">5V Power</text>
+      <text x="415" y="93" text-anchor="middle" fill="#FF4444" font-weight="bold">2</text>
+      <text x="475" y="93" text-anchor="middle" fill="#44CC44" font-weight="bold">5V IN</text>
 
-    <!-- Pin callouts -->
-    <g font-size="11">
-      <rect x="14" y="198" width="232" height="22" rx="4" fill="#0D1117"/>
-      <text x="30" y="213" fill="#4488FF" font-weight="bold">GPIO14</text>
-      <text x="90" y="213" fill="#AAA">(TX) → L9637D TX input</text>
+      <!-- Row 2: Pin 3,4 — GPIO2 SDA / 5V -->
+      <rect x="10" y="98" width="520" height="14" rx="2" fill="#0F0F1A"/>
+      <text x="40" y="109" text-anchor="middle" fill="#666">3</text>
+      <text x="95" y="109" text-anchor="middle" fill="#666">SDA1 (I2C)</text>
+      <text x="170" y="109" text-anchor="middle" fill="#666">GPIO2</text>
+      <text x="220" y="109" fill="#333">│</text>
+      <text x="265" y="109" text-anchor="middle" fill="#666">—</text>
+      <text x="340" y="109" text-anchor="middle" fill="#FF4444">5V Power</text>
+      <text x="415" y="109" text-anchor="middle" fill="#FF4444" font-weight="bold">4</text>
+      <text x="475" y="109" text-anchor="middle" fill="#44CC44" font-weight="bold">5V IN</text>
 
-      <rect x="14" y="224" width="232" height="22" rx="4" fill="#0D1117"/>
-      <text x="30" y="239" fill="#44AAFF" font-weight="bold">GPIO15</text>
-      <text x="90" y="239" fill="#AAA">(RX) ← L9637D RX output</text>
+      <!-- Row 3: Pin 5,6 — GPIO3 SCL / GND -->
+      <rect x="10" y="114" width="520" height="14" rx="2" fill="#12121F"/>
+      <text x="40" y="125" text-anchor="middle" fill="#666">5</text>
+      <text x="95" y="125" text-anchor="middle" fill="#666">SCL1 (I2C)</text>
+      <text x="170" y="125" text-anchor="middle" fill="#666">GPIO3</text>
+      <text x="220" y="125" fill="#333">│</text>
+      <text x="265" y="125" text-anchor="middle" fill="#666">—</text>
+      <text x="340" y="125" text-anchor="middle" fill="#888">GND</text>
+      <text x="415" y="125" text-anchor="middle" fill="#888" font-weight="bold">6</text>
+      <text x="475" y="125" text-anchor="middle" fill="#888" font-weight="bold">GND</text>
 
-      <rect x="14" y="250" width="232" height="22" rx="4" fill="#0D1117"/>
-      <text x="30" y="265" fill="#CC88FF" font-weight="bold">HDMI</text>
-      <text x="78" y="265" fill="#AAA">→ Waveshare 7" Display</text>
+      <!-- Row 4: Pin 7,8 — GPIO4 / GPIO14 TX ★ -->
+      <rect x="10" y="130" width="520" height="14" rx="2" fill="#0F0F1A"/>
+      <text x="40" y="141" text-anchor="middle" fill="#666">7</text>
+      <text x="95" y="141" text-anchor="middle" fill="#666">GPCLK0</text>
+      <text x="170" y="141" text-anchor="middle" fill="#666">GPIO4</text>
+      <text x="220" y="141" fill="#333">│</text>
+      <text x="265" y="141" text-anchor="middle" fill="#4488FF" font-weight="bold">GPIO14</text>
+      <text x="340" y="141" text-anchor="middle" fill="#4488FF" font-weight="bold">UART TX</text>
+      <text x="415" y="141" text-anchor="middle" fill="#4488FF" font-weight="bold">8</text>
+      <text x="475" y="141" text-anchor="middle" fill="#4488FF" font-weight="bold">→ L9637D</text>
 
-      <rect x="14" y="276" width="232" height="22" rx="4" fill="#0D1117"/>
-      <text x="30" y="291" fill="#44CC44" font-weight="bold">5V / GND</text>
-      <text x="102" y="291" fill="#AAA">← Power from buck conv.</text>
+      <!-- Row 5: Pin 9,10 — GND / GPIO15 RX ★ -->
+      <rect x="10" y="146" width="520" height="14" rx="2" fill="#12121F"/>
+      <text x="40" y="157" text-anchor="middle" fill="#888" font-weight="bold">9</text>
+      <text x="95" y="157" text-anchor="middle" fill="#888">GND</text>
+      <text x="170" y="157" text-anchor="middle" fill="#666">—</text>
+      <text x="220" y="157" fill="#333">│</text>
+      <text x="265" y="157" text-anchor="middle" fill="#44AAFF" font-weight="bold">GPIO15</text>
+      <text x="340" y="157" text-anchor="middle" fill="#44AAFF" font-weight="bold">UART RX</text>
+      <text x="415" y="157" text-anchor="middle" fill="#44AAFF" font-weight="bold">10</text>
+      <text x="475" y="157" text-anchor="middle" fill="#44AAFF" font-weight="bold">← L9637D</text>
+
+      <!-- Rows 6-20: remaining pins (dimmed) -->
+      <rect x="10" y="162" width="520" height="14" rx="2" fill="#0F0F1A"/>
+      <text x="40" y="173" text-anchor="middle" fill="#555">11</text><text x="95" y="173" text-anchor="middle" fill="#555">GPIO17</text>
+      <text x="220" y="173" fill="#333">│</text>
+      <text x="340" y="173" text-anchor="middle" fill="#555">GPIO18 (PCM)</text><text x="415" y="173" text-anchor="middle" fill="#555">12</text>
+
+      <rect x="10" y="178" width="520" height="14" rx="2" fill="#12121F"/>
+      <text x="40" y="189" text-anchor="middle" fill="#555">13</text><text x="95" y="189" text-anchor="middle" fill="#555">GPIO27</text>
+      <text x="220" y="189" fill="#333">│</text>
+      <text x="340" y="189" text-anchor="middle" fill="#888">GND</text><text x="415" y="189" text-anchor="middle" fill="#555">14</text>
+
+      <rect x="10" y="194" width="520" height="14" rx="2" fill="#0F0F1A"/>
+      <text x="40" y="205" text-anchor="middle" fill="#555">15</text><text x="95" y="205" text-anchor="middle" fill="#555">GPIO22</text>
+      <text x="220" y="205" fill="#333">│</text>
+      <text x="340" y="205" text-anchor="middle" fill="#555">GPIO23</text><text x="415" y="205" text-anchor="middle" fill="#555">16</text>
+
+      <rect x="10" y="210" width="520" height="14" rx="2" fill="#12121F"/>
+      <text x="40" y="221" text-anchor="middle" fill="#555">17</text><text x="95" y="221" text-anchor="middle" fill="#555">3V3</text>
+      <text x="220" y="221" fill="#333">│</text>
+      <text x="340" y="221" text-anchor="middle" fill="#555">GPIO24</text><text x="415" y="221" text-anchor="middle" fill="#555">18</text>
+
+      <rect x="10" y="226" width="520" height="14" rx="2" fill="#0F0F1A"/>
+      <text x="40" y="237" text-anchor="middle" fill="#555">19</text><text x="95" y="237" text-anchor="middle" fill="#555">SPI MOSI</text>
+      <text x="220" y="237" fill="#333">│</text>
+      <text x="340" y="237" text-anchor="middle" fill="#888">GND</text><text x="415" y="237" text-anchor="middle" fill="#555">20</text>
+
+      <rect x="10" y="242" width="520" height="14" rx="2" fill="#12121F"/>
+      <text x="40" y="253" text-anchor="middle" fill="#555">21-26</text><text x="120" y="253" text-anchor="middle" fill="#444">SPI / GPIO 9,11,25,8,7</text>
+      <text x="220" y="253" fill="#333">│</text>
+
+      <rect x="10" y="258" width="520" height="14" rx="2" fill="#0F0F1A"/>
+      <text x="40" y="269" text-anchor="middle" fill="#555">27-28</text><text x="120" y="269" text-anchor="middle" fill="#444">ID EEPROM (GPIO0, GPIO1)</text>
+      <text x="220" y="269" fill="#333">│</text>
+
+      <rect x="10" y="274" width="520" height="14" rx="2" fill="#12121F"/>
+      <text x="40" y="285" text-anchor="middle" fill="#555">29-40</text><text x="120" y="285" text-anchor="middle" fill="#444">GPIO 5,6,12,13,19,16,26,20,21 + GND</text>
+      <text x="220" y="285" fill="#333">│</text>
+      <text x="340" y="285" text-anchor="middle" fill="#888">GND on 30,34,39</text>
+    </g>
+
+    <!-- Key connections summary -->
+    <rect x="10" y="300" width="520" height="78" rx="6" fill="#0D0D1F" stroke="#2A2A55" stroke-width="1"/>
+    <text x="20" y="318" fill="#AAAADD" font-size="11" font-weight="bold">Active Connections Summary</text>
+    <g font-size="10">
+      <text x="20" y="336" fill="#4488FF">Pin 8  (GPIO14/TX)</text><text x="150" y="336" fill="#AAA">→ L9637D Pin 1 (TX) — UART transmit at 3.3V</text>
+      <text x="20" y="350" fill="#44AAFF">Pin 10 (GPIO15/RX)</text><text x="150" y="350" fill="#AAA">← L9637D Pin 3 (RX) — UART receive at 3.3V</text>
+      <text x="20" y="364" fill="#FF4444">Pin 2,4 (5V)</text><text x="150" y="364" fill="#AAA">← 5V from LM2596 buck converter (via μUSB or header)</text>
+      <text x="20" y="378" fill="#888">Pin 6,9,14... (GND)</text><text x="150" y="378" fill="#AAA">← Common ground with L9637D and OBD-II</text>
     </g>
   </g>
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- WAVESHARE 7" DISPLAY (bottom right) -->
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <g transform="translate(740, 650)">
-    <rect x="0" y="0" width="240" height="130" rx="10" fill="#1A1A2E" stroke="#555" stroke-width="2" filter="url(#shadow)"/>
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!--  LM2596 BUCK CONVERTER — detailed pins                        -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <g transform="translate(40, 510)">
+    <rect x="0" y="0" width="310" height="160" rx="10" fill="#2D1B00" stroke="#885500" stroke-width="2" filter="url(#sh)"/>
+    <text x="155" y="24" text-anchor="middle" fill="#FFAA44" font-size="14" font-weight="bold">12V → 5V Buck Converter</text>
+    <text x="155" y="40" text-anchor="middle" fill="#996633" font-size="10">LM2596 Step-Down Module</text>
+
+    <g font-size="10">
+      <rect x="12" y="50" width="286" height="16" rx="2" fill="#1A0D00"/>
+      <text x="30" y="62" fill="#CC9944" font-weight="bold">Pad</text>
+      <text x="100" y="62" fill="#CC9944" font-weight="bold">Label</text>
+      <text x="190" y="62" fill="#CC9944" font-weight="bold">Wire</text>
+
+      <rect x="12" y="68" width="286" height="16" rx="2" fill="#1A1000"/>
+      <text x="30" y="80" fill="#FF6666" font-weight="bold">IN+</text>
+      <text x="100" y="80" fill="#CCC">+12V Input</text>
+      <text x="190" y="80" fill="#FF6666">← OBD-II Pin 16 (+12V)</text>
+
+      <rect x="12" y="86" width="286" height="16" rx="2" fill="#1A0D00"/>
+      <text x="30" y="98" fill="#999" font-weight="bold">IN−</text>
+      <text x="100" y="98" fill="#CCC">Ground Input</text>
+      <text x="190" y="98" fill="#888">← OBD-II Pin 4/5 (GND)</text>
+
+      <rect x="12" y="104" width="286" height="16" rx="2" fill="#1A1000"/>
+      <text x="30" y="116" fill="#44CC44" font-weight="bold">OUT+</text>
+      <text x="100" y="116" fill="#CCC">+5V Output</text>
+      <text x="190" y="116" fill="#44CC44">→ L9637D VCC + Pi 5V</text>
+
+      <rect x="12" y="122" width="286" height="16" rx="2" fill="#1A0D00"/>
+      <text x="30" y="134" fill="#999" font-weight="bold">OUT−</text>
+      <text x="100" y="134" fill="#CCC">Ground Output</text>
+      <text x="190" y="134" fill="#888">→ Common GND bus</text>
+    </g>
+
+    <text x="155" y="155" text-anchor="middle" fill="#775533" font-size="9">Adjust trimpot to 5.0V output before connecting!</text>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!--  WAVESHARE 7" DISPLAY — connection details                    -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <g transform="translate(440, 510)">
+    <rect x="0" y="0" width="300" height="160" rx="10" fill="#1A1A2E" stroke="#444488" stroke-width="2" filter="url(#sh)"/>
+
     <!-- Screen -->
-    <rect x="15" y="12" width="210" height="85" rx="6" fill="#0D0D0D" stroke="#333" stroke-width="1"/>
-    <!-- Gauge preview shapes -->
-    <circle cx="75" cy="54" r="28" fill="none" stroke="#FF4500" stroke-width="2" stroke-dasharray="50,30" opacity="0.6"/>
-    <circle cx="160" cy="54" r="28" fill="none" stroke="#00BFFF" stroke-width="2" stroke-dasharray="50,30" opacity="0.6"/>
-    <line x1="75" y1="54" x2="58" y2="38" stroke="#FF6414" stroke-width="2" opacity="0.8"/>
-    <line x1="160" y1="54" x2="178" y2="42" stroke="#FF6414" stroke-width="2" opacity="0.8"/>
+    <rect x="30" y="14" width="240" height="75" rx="6" fill="#0A0A0A" stroke="#333" stroke-width="1"/>
+    <circle cx="105" cy="50" r="22" fill="none" stroke="#FF4500" stroke-width="1.5" stroke-dasharray="40,25" opacity="0.5"/>
+    <circle cx="195" cy="50" r="22" fill="none" stroke="#00BFFF" stroke-width="1.5" stroke-dasharray="40,25" opacity="0.5"/>
+    <line x1="105" y1="50" x2="92" y2="38" stroke="#FF6414" stroke-width="1.5" opacity="0.7"/>
+    <line x1="195" y1="50" x2="210" y2="40" stroke="#FF6414" stroke-width="1.5" opacity="0.7"/>
 
-    <text x="120" y="115" text-anchor="middle" fill="#CCC" font-size="12" font-weight="bold">Waveshare 7" IPS LCD</text>
-    <text x="120" y="128" text-anchor="middle" fill="#888" font-size="10">1024 × 600 · HDMI</text>
-  </g>
+    <text x="150" y="108" text-anchor="middle" fill="#CCC" font-size="13" font-weight="bold">Waveshare 7" IPS Display</text>
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- BMW MS41 ECU (bottom left) -->
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <g transform="translate(60, 530)">
-    <rect x="0" y="0" width="220" height="150" rx="10" fill="#2E1A1A" stroke="#884444" stroke-width="2" filter="url(#shadow)"/>
-    <!-- ECU body -->
-    <rect x="20" y="15" width="180" height="70" rx="6" fill="#1A0D0D" stroke="#664444" stroke-width="1.5"/>
-    <text x="110" y="42" text-anchor="middle" fill="#FF8888" font-size="14" font-weight="bold">Siemens MS41</text>
-    <text x="110" y="58" text-anchor="middle" fill="#AA6666" font-size="10">Motronic DME · M52 Engine</text>
-    <text x="110" y="72" text-anchor="middle" fill="#886666" font-size="9">Addr: 0x12 · 9600 baud 8E1</text>
-
-    <g font-size="10" fill="#AA8888">
-      <text x="20" y="104">K-Line Pin: OBD-II Pin 7</text>
-      <text x="20" y="118">Protocol: BMW DS2</text>
-      <text x="20" y="132">30 live parameters @ 10 Hz</text>
-      <text x="20" y="146">DTC read / clear</text>
+    <g font-size="10">
+      <text x="20" y="125" fill="#CC88FF">HDMI input</text><text x="110" y="125" fill="#AAA">← Pi Mini-HDMI (via adapter)</text>
+      <text x="20" y="139" fill="#AAA">Resolution</text><text x="110" y="139" fill="#CCC">1024 x 600 @ 60Hz</text>
+      <text x="20" y="153" fill="#AAA">Touch</text><text x="110" y="153" fill="#666">USB (not used for gauges)</text>
     </g>
   </g>
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- WIRING CONNECTIONS -->
-  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!--  BMW MS41 ECU — connection details                            -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <g transform="translate(820, 510)">
+    <rect x="0" y="0" width="340" height="160" rx="10" fill="#2A1515" stroke="#884444" stroke-width="2" filter="url(#sh)"/>
+    <rect x="20" y="14" width="300" height="55" rx="6" fill="#150A0A" stroke="#664444" stroke-width="1.5"/>
+    <text x="170" y="36" text-anchor="middle" fill="#FF8888" font-size="15" font-weight="bold">Siemens MS41 ECU</text>
+    <text x="170" y="54" text-anchor="middle" fill="#AA6666" font-size="10">Motronic DME · M52 Engine · BMW E36/E39</text>
 
-  <!-- +12V: OBD Pin 16 → Buck Converter IN -->
-  <path d="M 280 258 L 320 258 L 320 172 L 380 172"
-        fill="none" stroke="#FF4444" stroke-width="2.5" marker-end="url(#arrow-red)"/>
-  <text x="300" y="200" fill="#FF6666" font-size="10" font-weight="bold" transform="rotate(-90,300,200)">+12V</text>
+    <g font-size="10" fill="#CC9999">
+      <text x="20" y="86">ECU Address: 0x12</text>
+      <text x="200" y="86" fill="#888">Protocol: BMW DS2</text>
+      <text x="20" y="102">K-Line: OBD-II Pin 7 (single wire, half-duplex)</text>
+      <text x="20" y="118">Baud: 9600, 8 data, Even parity, 1 stop bit</text>
+      <text x="20" y="134">Init: Fast (25ms pulse) or Slow (5-baud 0x12)</text>
+      <text x="20" y="150">Data: 30 live params @ 10Hz, DTC read/clear</text>
+    </g>
+  </g>
 
-  <!-- 5V: Buck OUT → L9637D VCC -->
-  <path d="M 580 172 L 610 172 L 610 258 L 535 258 L 535 420 L 600 420"
-        fill="none" stroke="#44CC44" stroke-width="2" marker-end="url(#arrow-green)"/>
-  <text x="615" y="220" fill="#44CC44" font-size="10" font-weight="bold">5V</text>
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!--  WIRING CONNECTIONS (between components)                      -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
 
-  <!-- 5V: Buck OUT → Pi Power -->
-  <path d="M 610 172 L 670 172 L 670 555 L 720 555"
-        fill="none" stroke="#44CC44" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrow-green)"/>
-  <text x="672" y="400" fill="#44CC44" font-size="9">5V Power</text>
+  <!-- +12V: OBD Pin 16 → Buck IN+ -->
+  <path d="M 350 358 L 370 358 L 370 540 L 370 560 L 370 560"
+        fill="none" stroke="#FF4444" stroke-width="2.5"/>
+  <circle cx="370" cy="560" r="4" fill="#FF4444"/>
+  <text x="362" y="450" fill="#FF6666" font-size="10" font-weight="bold" transform="rotate(-90,362,450)">+12V from OBD Pin 16</text>
 
-  <!-- K-Line: OBD Pin 7 → L9637D K (via 10k pull-up) -->
-  <path d="M 280 320 L 320 320 L 320 400 L 380 400"
-        fill="none" stroke="#FFAA00" stroke-width="2.5" marker-end="url(#arrow-yellow)"/>
-  <!-- 10k pull-up resistor symbol -->
-  <rect x="305" y="280" width="30" height="14" rx="3" fill="none" stroke="#FFAA00" stroke-width="1.5"/>
-  <text x="320" y="290" text-anchor="middle" fill="#FFAA00" font-size="8">10kΩ</text>
-  <line x1="320" y1="258" x2="320" y2="280" stroke="#FFAA00" stroke-width="1" stroke-dasharray="3,2"/>
-  <line x1="320" y1="294" x2="320" y2="320" stroke="#FFAA00" stroke-width="1"/>
-  <text x="345" y="365" fill="#FFCC44" font-size="10" font-weight="bold">K-Line</text>
+  <!-- K-Line: OBD Pin 7 → L9637D pins 5+6 -->
+  <path d="M 350 323 L 400 323 L 400 380 L 440 380"
+        fill="none" stroke="#FFAA00" stroke-width="2.5" marker-end="url(#arr-y)"/>
+  <text x="410" y="345" fill="#FFCC44" font-size="10" font-weight="bold">K-Line</text>
 
-  <!-- K-Line: L9637D K → MS41 ECU (same wire, going down) -->
-  <path d="M 380 400 L 340 400 L 340 580 L 280 580"
-        fill="none" stroke="#FFAA00" stroke-width="2.5" stroke-dasharray="8,4"/>
-  <text x="310" y="500" fill="#FFCC44" font-size="9" transform="rotate(-90,310,500)">K-Line Bus</text>
+  <!-- 10k pull-up from +12V to K-Line -->
+  <rect x="385" y="340" width="30" height="14" rx="3" fill="none" stroke="#FFAA00" stroke-width="1.5"/>
+  <text x="400" y="350" text-anchor="middle" fill="#FFAA00" font-size="8">10kΩ</text>
+  <line x1="400" y1="330" x2="400" y2="340" stroke="#FF4444" stroke-width="1"/>
+  <line x1="400" y1="354" x2="400" y2="370" stroke="#FFAA00" stroke-width="1"/>
+  <text x="412" y="333" fill="#FF6666" font-size="8">+12V</text>
 
-  <!-- UART TX: Pi GPIO14 → L9637D TX -->
-  <path d="M 720 487 L 660 487 L 660 502 L 600 502"
-        fill="none" stroke="#4488FF" stroke-width="2" marker-end="url(#arrow-blue)"/>
-  <text x="660" y="497" text-anchor="middle" fill="#4488FF" font-size="9" font-weight="bold">TX (3.3V)</text>
+  <!-- K-Line: L9637D → MS41 ECU (same bus) -->
+  <path d="M 590 380 L 630 380 L 630 440 L 820 440 L 820 530"
+        fill="none" stroke="#FFAA00" stroke-width="2.5" stroke-dasharray="8,4" marker-end="url(#arr-y)"/>
+  <text x="720" y="435" fill="#FFCC44" font-size="9">K-Line to ECU</text>
 
-  <!-- UART RX: L9637D RX → Pi GPIO15 -->
-  <path d="M 600 530 L 660 530 L 660 513 L 720 513"
-        fill="none" stroke="#44AAFF" stroke-width="2" marker-end="url(#arrow-blue)"/>
-  <text x="660" y="545" text-anchor="middle" fill="#44AAFF" font-size="9" font-weight="bold">RX (3.3V)</text>
+  <!-- 5V: Buck OUT → L9637D VCC (pin 7) -->
+  <path d="M 310 626 L 340 626 L 340 460 L 440 460"
+        fill="none" stroke="#44CC44" stroke-width="2" marker-end="url(#arr-g)"/>
+  <text x="380" y="455" fill="#44CC44" font-size="9" font-weight="bold">5V</text>
 
-  <!-- GND: OBD → all components -->
-  <path d="M 280 350 L 330 350 L 330 610 L 490 610"
-        fill="none" stroke="#888" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <path d="M 490 610 L 490 560 L 490 460 L 465 460"
-        fill="none" stroke="#888" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <path d="M 490 610 L 720 610 L 720 570"
-        fill="none" stroke="#888" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <text x="490" y="625" text-anchor="middle" fill="#888" font-size="10">Common GND</text>
+  <!-- 5V: Buck OUT → Pi 5V (pin 2/4) -->
+  <path d="M 340 626 L 340 700 L 900 700 L 900 480 L 950 480"
+        fill="none" stroke="#44CC44" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arr-g)"/>
+  <text x="620" y="695" fill="#44CC44" font-size="9">5V to Pi (via header pin 2/4 or μUSB)</text>
+
+  <!-- UART TX: Pi GPIO14 (pin 8) → L9637D pin 1 -->
+  <path d="M 820 222 L 780 222 L 780 290 L 740 290"
+        fill="none" stroke="#4488FF" stroke-width="2.5" marker-end="url(#arr-b)"/>
+  <text x="785" y="260" fill="#4488FF" font-size="10" font-weight="bold">GPIO14 TX</text>
+
+  <!-- UART RX: L9637D pin 3 → Pi GPIO15 (pin 10) -->
+  <path d="M 740 310 L 780 310 L 780 238 L 820 238"
+        fill="none" stroke="#44AAFF" stroke-width="2.5" marker-end="url(#arr-b)"/>
+  <text x="785" y="325" fill="#44AAFF" font-size="10" font-weight="bold">GPIO15 RX</text>
 
   <!-- HDMI: Pi → Display -->
-  <path d="M 850 540 L 850 600 L 860 650"
-        fill="none" stroke="#CC88FF" stroke-width="2.5" marker-end="url(#arrow)"/>
-  <text x="830" y="620" fill="#CC88FF" font-size="10" font-weight="bold">HDMI</text>
+  <path d="M 870 480 L 870 510 L 650 510 L 650 530"
+        fill="none" stroke="#CC88FF" stroke-width="2.5" marker-end="url(#arr-p)"/>
+  <text x="760" y="505" fill="#CC88FF" font-size="10" font-weight="bold">Mini-HDMI</text>
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- LEGEND -->
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <g transform="translate(60, 720)">
-    <rect x="0" y="0" width="500" height="110" rx="8" fill="#111122" stroke="#333" stroke-width="1"/>
-    <text x="15" y="22" fill="#CCC" font-size="12" font-weight="bold">Wire Legend</text>
+  <!-- GND bus (dashed) -->
+  <path d="M 350 380 L 370 380 L 370 680 L 900 680"
+        fill="none" stroke="#666" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <path d="M 500 680 L 500 470" fill="none" stroke="#666" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="630" y="675" text-anchor="middle" fill="#777" font-size="10">Common Ground Bus (OBD Pin 4/5 → Buck GND → L9637D GND → Pi GND)</text>
 
-    <line x1="15" y1="40" x2="55" y2="40" stroke="#FF4444" stroke-width="2.5"/>
-    <text x="65" y="44" fill="#AAA" font-size="11">+12V (from OBD-II Pin 16)</text>
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!--  LEGEND + PROTOCOL BOX (bottom)                               -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <g transform="translate(40, 740)">
+    <rect x="0" y="0" width="580" height="100" rx="8" fill="#111122" stroke="#222244" stroke-width="1"/>
+    <text x="15" y="20" fill="#CCC" font-size="12" font-weight="bold">Wire Color Legend</text>
+    <g font-size="11">
+      <line x1="15" y1="38" x2="55" y2="38" stroke="#FF4444" stroke-width="2.5"/>
+      <text x="65" y="42" fill="#AAA">+12V (from OBD-II Pin 16, always on)</text>
 
-    <line x1="15" y1="58" x2="55" y2="58" stroke="#44CC44" stroke-width="2"/>
-    <text x="65" y="62" fill="#AAA" font-size="11">+5V (regulated output)</text>
+      <line x1="15" y1="55" x2="55" y2="55" stroke="#44CC44" stroke-width="2"/>
+      <text x="65" y="59" fill="#AAA">+5V (regulated from LM2596)</text>
 
-    <line x1="15" y1="76" x2="55" y2="76" stroke="#FFAA00" stroke-width="2.5"/>
-    <text x="65" y="80" fill="#AAA" font-size="11">K-Line (ISO 9141, 12V signaling)</text>
+      <line x1="15" y1="72" x2="55" y2="72" stroke="#FFAA00" stroke-width="2.5"/>
+      <text x="65" y="76" fill="#AAA">K-Line (ISO 9141, 12V half-duplex bus)</text>
 
-    <line x1="250" y1="40" x2="290" y2="40" stroke="#4488FF" stroke-width="2"/>
-    <text x="300" y="44" fill="#AAA" font-size="11">UART TX/RX (3.3V logic)</text>
+      <line x1="300" y1="38" x2="340" y2="38" stroke="#4488FF" stroke-width="2"/>
+      <text x="350" y="42" fill="#AAA">UART TX (Pi → L9637D, 3.3V)</text>
 
-    <line x1="250" y1="58" x2="290" y2="58" stroke="#CC88FF" stroke-width="2.5"/>
-    <text x="300" y="62" fill="#AAA" font-size="11">HDMI video output</text>
+      <line x1="300" y1="55" x2="340" y2="55" stroke="#44AAFF" stroke-width="2"/>
+      <text x="350" y="59" fill="#AAA">UART RX (L9637D → Pi, 3.3V)</text>
 
-    <line x1="250" y1="76" x2="290" y2="76" stroke="#888" stroke-width="1.5" stroke-dasharray="4,3"/>
-    <text x="300" y="80" fill="#AAA" font-size="11">Ground (common)</text>
+      <line x1="300" y1="72" x2="340" y2="72" stroke="#CC88FF" stroke-width="2.5"/>
+      <text x="350" y="76" fill="#AAA">HDMI video (Pi → Display)</text>
 
-    <text x="15" y="100" fill="#666" font-size="9">L9637D handles 3.3V ↔ 12V level shifting. Pi UART operates at 3.3V; K-Line bus runs at 12V.</text>
+      <line x1="300" y1="89" x2="340" y2="89" stroke="#666" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="350" y="93" fill="#AAA">Ground (common bus)</text>
+    </g>
   </g>
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- PROTOCOL INFO BOX -->
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <g transform="translate(620, 720)">
-    <rect x="0" y="0" width="340" height="110" rx="8" fill="#111122" stroke="#333" stroke-width="1"/>
-    <text x="15" y="22" fill="#CCC" font-size="12" font-weight="bold">Communication Protocol</text>
-
+  <g transform="translate(680, 740)">
+    <rect x="0" y="0" width="400" height="100" rx="8" fill="#111122" stroke="#222244" stroke-width="1"/>
+    <text x="15" y="20" fill="#CCC" font-size="12" font-weight="bold">UART Configuration (/dev/ttyAMA0)</text>
     <g font-size="11" fill="#AAA">
-      <text x="15" y="42">K-Line: 9600 baud, 8 data, Even parity, 1 stop</text>
-      <text x="15" y="58">Init: Fast (25ms LOW/HIGH) or Slow (5-baud)</text>
-      <text x="15" y="74">Frame: [Addr=0x12] [Len] [Payload] [XOR Chk]</text>
-      <text x="15" y="90">Polling: 10 Hz (30 live parameters)</text>
-      <text x="15" y="106" fill="#666">Half-duplex: TX echoes on RX, must discard</text>
+      <text x="15" y="40">Baud: 9600  |  Data: 8 bit  |  Parity: Even  |  Stop: 1</text>
+      <text x="15" y="56">Pi config.txt: enable_uart=1, dtoverlay=miniuart-bt</text>
+      <text x="15" y="72">Serial console disabled (raspi-config or cmdline.txt)</text>
+      <text x="15" y="88" fill="#666">PL011 UART on GPIO14/15; BT moved to miniUART</text>
+    </g>
+  </g>
+
+  <g transform="translate(1120, 740)">
+    <rect x="0" y="0" width="240" height="100" rx="8" fill="#111122" stroke="#222244" stroke-width="1"/>
+    <text x="15" y="20" fill="#CCC" font-size="12" font-weight="bold">Capacitors Required</text>
+    <g font-size="11" fill="#AAA">
+      <text x="15" y="40">L9637D VCC–GND: 100nF ceramic</text>
+      <text x="15" y="56">LM2596: per module (built-in)</text>
+      <text x="15" y="72">K-Line pull-up: 10kΩ to +12V</text>
+      <text x="15" y="88" fill="#666">on OBD-II Pin 7</text>
+    </g>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!--  SIGNAL FLOW DIAGRAM (very bottom)                            -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <g transform="translate(40, 870)">
+    <rect x="0" y="0" width="1320" height="60" rx="8" fill="#0D0D1A" stroke="#222244" stroke-width="1"/>
+    <text x="660" y="20" text-anchor="middle" fill="#888" font-size="12" font-weight="bold">Signal Flow</text>
+
+    <!-- Flow arrows -->
+    <g font-size="11" font-weight="bold">
+      <rect x="20" y="30" width="130" height="22" rx="6" fill="#2A1515" stroke="#884444" stroke-width="1"/>
+      <text x="85" y="45" text-anchor="middle" fill="#FF8888">MS41 ECU</text>
+
+      <text x="168" y="45" fill="#FFAA00">→ K-Line →</text>
+
+      <rect x="230" y="30" width="100" height="22" rx="6" fill="#142214" stroke="#336633" stroke-width="1"/>
+      <text x="280" y="45" text-anchor="middle" fill="#66CC66">L9637D</text>
+
+      <text x="348" y="45" fill="#4488FF">→ UART →</text>
+
+      <rect x="405" y="30" width="160" height="22" rx="6" fill="#1A1A30" stroke="#4444AA" stroke-width="1"/>
+      <text x="485" y="45" text-anchor="middle" fill="#AAAADD">Pi Zero 2 W</text>
+
+      <text x="583" y="45" fill="#CC88FF">→ HDMI →</text>
+
+      <rect x="640" y="30" width="160" height="22" rx="6" fill="#1A1A2E" stroke="#555" stroke-width="1"/>
+      <text x="720" y="45" text-anchor="middle" fill="#CCC">7" Display</text>
+
+      <text x="830" y="45" fill="#888">│</text>
+
+      <rect x="860" y="30" width="430" height="22" rx="6" fill="#0D0D1A" stroke="#333" stroke-width="1"/>
+      <text x="1075" y="45" text-anchor="middle" fill="#888">9600 baud 8E1 → 3.3V UART → Python (pygame + cairo) → 1024x600 @ 30fps</text>
+    </g>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!--  POWER BUDGET (bottom right)                                  -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <g transform="translate(40, 950)">
+    <rect x="0" y="0" width="1320" height="55" rx="8" fill="#0D0D1A" stroke="#222244" stroke-width="1"/>
+    <text x="20" y="20" fill="#888" font-size="12" font-weight="bold">Power Budget (from OBD-II Pin 16)</text>
+    <g font-size="11">
+      <text x="20" y="42" fill="#FF6666">12V input</text>
+      <text x="100" y="42" fill="#666">→ LM2596 →</text>
+      <text x="195" y="42" fill="#44CC44">5V @ ~1A max</text>
+      <text x="310" y="42" fill="#666">→</text>
+      <text x="330" y="42" fill="#AAA">Pi Zero 2 W: ~350mA</text>
+      <text x="510" y="42" fill="#666">+</text>
+      <text x="530" y="42" fill="#AAA">L9637D: ~10mA</text>
+      <text x="670" y="42" fill="#666">+</text>
+      <text x="690" y="42" fill="#AAA">Display backlight: via separate 5V or HDMI power</text>
+      <text x="1020" y="42" fill="#666">│</text>
+      <text x="1040" y="42" fill="#888">Total: ~400mA from 12V supply</text>
     </g>
   </g>
 
