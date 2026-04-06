@@ -10,7 +10,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -126,7 +125,7 @@ fun UIKitScreen() {
             OutlinedButton(onClick = {}, shape = RoundedCornerShape(25.dp),
                 border = BorderStroke(1.5.dp, TextDark),
                 contentPadding = PaddingValues(horizontal = 18.dp, vertical = 14.dp)) {
-                Icon(Icons.AutoMirrored.Filled.ArrowForward, null, Modifier.size(20.dp), tint = TextDark)
+                Icon(Icons.Default.ArrowForward, null, Modifier.size(20.dp), tint = TextDark)
                 Spacer(Modifier.width(4.dp))
                 Text("CONTINUE", color = TextDark, fontWeight = FontWeight.Medium, fontSize = 14.sp)
             }
@@ -288,7 +287,7 @@ fun UIKitScreen() {
         val grid = listOf(
             listOf(Triple(Icons.Default.GridView, BlueLight, "Grid"), Triple(Icons.Default.ChevronRight, BluePrimary, "Next"), Triple(Icons.Default.Layers, PurplePrimary, "Layers")),
             listOf(Triple(Icons.Default.Image, BlueLight, "Image"), Triple(Icons.Default.ShoppingCart, OrangePrimary, "Cart"), Triple(Icons.Default.Settings, PurplePrimary, "Settings")),
-            listOf(Triple(Icons.AutoMirrored.Filled.ArrowForward, BluePrimary, "Forward"), Triple(Icons.Default.Star, GreenPrimary, "Star"), Triple(Icons.Default.MoreHoriz, OrangePrimary, "More"))
+            listOf(Triple(Icons.Default.ArrowForward, BluePrimary, "Forward"), Triple(Icons.Default.Star, GreenPrimary, "Star"), Triple(Icons.Default.MoreHoriz, OrangePrimary, "More"))
         )
         grid.forEach { row ->
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
