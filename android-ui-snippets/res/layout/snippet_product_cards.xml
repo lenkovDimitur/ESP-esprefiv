@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ============================================================
+     PRODUCT & FEATURED CARDS
+     ============================================================ -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:background="@color/bg_cream">
+
+    <!-- ===== Product Card ===== -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardProduct"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginEnd="12dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- PRODUCT label -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/green_light"
+                android:padding="8dp"
+                android:text="PRODUCT"
+                android:textColor="@color/text_dark"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif-bold" />
+
+            <!-- Product image placeholder -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@color/green_light">
+
+                <ImageView
+                    android:id="@+id/imgProduct"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_image_placeholder"
+                    android:scaleType="centerInside"
+                    android:contentDescription="Product image" />
+            </FrameLayout>
+
+            <!-- Product details -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/tvProductTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Title title"
+                    android:textColor="@color/text_dark"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-medium" />
+
+                <TextView
+                    android:id="@+id/tvProductSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Image polotor"
+                    android:textColor="@color/text_medium"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Price"
+                        android:textColor="@color/text_medium"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tvProductPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$200"
+                        android:textColor="@color/text_dark"
+                        android:textSize="16sp"
+                        android:fontFamily="sans-serif-bold" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- ===== Featured Card ===== -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardFeatured"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- FEATURED label with lines -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/purple_light"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FEATURED"
+                    android:textColor="@color/text_dark"
+                    android:textSize="12sp"
+                    android:fontFamily="sans-serif-bold"
+                    android:layout_marginBottom="4dp" />
+
+                <!-- Decorative lines -->
+                <View
+                    android:layout_width="60dp"
+                    android:layout_height="2dp"
+                    android:background="@color/purple_primary"
+                    android:layout_marginBottom="3dp" />
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="2dp"
+                    android:background="@color/purple_primary" />
+            </LinearLayout>
+
+            <!-- Featured image -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:background="@color/purple_light">
+
+                <ImageView
+                    android:id="@+id/imgFeatured"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_image_placeholder"
+                    android:scaleType="centerInside"
+                    android:contentDescription="Featured image" />
+            </FrameLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ============================================================
+     MAIN ACTIVITY LAYOUT - Combines all UI kit snippets
+     in a scrollable view for preview.
+     ============================================================ -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_cream">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <!-- Section: Buttons -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buttons"
+            android:textSize="20sp"
+            android:textColor="@color/text_dark"
+            android:fontFamily="sans-serif-bold"
+            android:paddingStart="8dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp" />
+
+        <include layout="@layout/snippet_buttons" />
+
+        <!-- Section: Icon Buttons -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Icon Buttons"
+            android:textSize="20sp"
+            android:textColor="@color/text_dark"
+            android:fontFamily="sans-serif-bold"
+            android:paddingStart="8dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp" />
+
+        <include layout="@layout/snippet_icon_buttons" />
+
+        <!-- Section: Explore / Shop / Tabs -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Explore &amp; Tabs"
+            android:textSize="20sp"
+            android:textColor="@color/text_dark"
+            android:fontFamily="sans-serif-bold"
+            android:paddingStart="8dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp" />
+
+        <include layout="@layout/snippet_explore_shop_tabs" />
+
+        <!-- Section: Product Cards -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Product Cards"
+            android:textSize="20sp"
+            android:textColor="@color/text_dark"
+            android:fontFamily="sans-serif-bold"
+            android:paddingStart="8dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp" />
+
+        <include layout="@layout/snippet_product_cards" />
+
+        <!-- Section: Progress & Sliders -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Progress &amp; Sliders"
+            android:textSize="20sp"
+            android:textColor="@color/text_dark"
+            android:fontFamily="sans-serif-bold"
+            android:paddingStart="8dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp" />
+
+        <include layout="@layout/snippet_progress_sliders" />
+
+        <!-- Section: Badges -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Badges"
+            android:textSize="20sp"
+            android:textColor="@color/text_dark"
+            android:fontFamily="sans-serif-bold"
+            android:paddingStart="8dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp" />
+
+        <include layout="@layout/snippet_badges" />
+
+        <!-- Section: Checkboxes & Toggles -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Checkboxes &amp; Toggles"
+            android:textSize="20sp"
+            android:textColor="@color/text_dark"
+            android:fontFamily="sans-serif-bold"
+            android:paddingStart="8dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp" />
+
+        <include layout="@layout/snippet_checkboxes_toggles" />
+
+        <!-- Section: Chat Bubbles -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chat Bubbles"
+            android:textSize="20sp"
+            android:textColor="@color/text_dark"
+            android:fontFamily="sans-serif-bold"
+            android:paddingStart="8dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp" />
+
+        <include layout="@layout/snippet_chat_bubbles" />
+
+        <!-- Section: Grid Cards -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grid Cards"
+            android:textSize="20sp"
+            android:textColor="@color/text_dark"
+            android:fontFamily="sans-serif-bold"
+            android:paddingStart="8dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp" />
+
+        <include layout="@layout/snippet_grid_cards" />
+
+        <!-- Section: List Item -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="List Item"
+            android:textSize="20sp"
+            android:textColor="@color/text_dark"
+            android:fontFamily="sans-serif-bold"
+            android:paddingStart="8dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp" />
+
+        <include layout="@layout/snippet_list_item" />
+
+        <!-- Section: Bottom Navigation -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bottom Navigation"
+            android:textSize="20sp"
+            android:textColor="@color/text_dark"
+            android:fontFamily="sans-serif-bold"
+            android:paddingStart="8dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp" />
+
+        <include layout="@layout/snippet_bottom_navigation" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="32dp" />
+
+    </LinearLayout>
+</ScrollView>

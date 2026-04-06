@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ============================================================
+     BUTTONS - Various button styles from the UI kit
+     Requires: Material Components library
+     implementation 'com.google.android.material:material:1.11.0'
+     ============================================================ -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/bg_cream">
+
+    <!-- ===== Row 1: GET STARTED buttons ===== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <!-- Filled gradient button with icon -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGetStartedFilled"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_button_gradient_blue"
+            android:text="GET STARTED"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:icon="@drawable/ic_rocket"
+            app:iconTint="@color/white"
+            app:iconGravity="textStart"
+            app:cornerRadius="24dp"
+            android:layout_marginEnd="12dp" />
+
+        <!-- Outlined button with Google icon -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGetStartedOutlined"
+            style="@style/Widget.App.Button.Outlined"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="GET STARTED"
+            android:textColor="@color/text_dark"
+            app:icon="@drawable/ic_google"
+            app:iconGravity="textStart"
+            app:strokeColor="@color/green_primary"
+            android:background="@drawable/bg_button_outlined_green" />
+    </LinearLayout>
+
+    <!-- ===== Row 2: LOGIN buttons ===== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <!-- Outlined LOGIN -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLoginOutlined"
+            style="@style/Widget.App.Button.Outlined"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="LOGIN"
+            android:layout_marginEnd="12dp" />
+
+        <!-- Filled orange LOGIN -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLoginFilled"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_button_gradient_orange"
+            android:text="LOGIN"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:cornerRadius="24dp" />
+    </LinearLayout>
+
+    <!-- ===== Row 3: SIGN UP buttons ===== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <!-- Purple filled SIGN UP -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSignUpPurple"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_button_gradient_purple"
+            android:text="SIGN UP"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:cornerRadius="24dp"
+            android:layout_marginEnd="12dp" />
+
+        <!-- Orange outlined SIGN UP -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSignUpOrange"
+            style="@style/Widget.App.Button.Outlined"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="SIGN UP"
+            android:textColor="@color/orange_primary"
+            app:strokeColor="@color/orange_primary" />
+    </LinearLayout>
+
+    <!-- ===== Row 4: CONTINUE buttons ===== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <!-- Outlined CONTINUE with play icon -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnContinuePlay"
+            style="@style/Widget.App.Button.Outlined"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="CONTINUE"
+            android:textColor="@color/text_dark"
+            app:icon="@android:drawable/ic_media_play"
+            app:iconGravity="textStart"
+            app:strokeColor="@color/text_dark"
+            android:layout_marginEnd="12dp" />
+
+        <!-- Outlined CONTINUE with arrow -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnContinueArrow"
+            style="@style/Widget.App.Button.Outlined"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="CONTINUE"
+            android:textColor="@color/text_dark"
+            app:icon="@drawable/ic_arrow_forward"
+            app:iconGravity="textStart"
+            app:strokeColor="@color/text_dark"
+            android:layout_marginEnd="12dp" />
+
+        <!-- Green filled CONTINUE with cart icon -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnContinueCart"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="CONTINUE"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:backgroundTint="@color/green_primary"
+            app:icon="@drawable/ic_cart"
+            app:iconTint="@color/white"
+            app:iconGravity="textStart"
+            app:cornerRadius="24dp" />
+    </LinearLayout>
+
+    <!-- ===== Row 5: Small utility buttons ===== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <!-- GET button (light blue filled) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGet"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="GET"
+            android:textColor="@color/blue_primary"
+            app:backgroundTint="@color/blue_light"
+            app:cornerRadius="20dp"
+            android:layout_marginEnd="12dp" />
+
+        <!-- CLOSE button (coral/salmon filled) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnClose"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="CLOSE"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/coral"
+            app:cornerRadius="20dp" />
+    </LinearLayout>
+
+</LinearLayout>

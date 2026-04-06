@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ============================================================
+     LIST ITEM - Card-style list item with icon, title, subtitle
+     (Bottom-left card in the image with avatar + title + menu)
+     ============================================================ -->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/white"
+    android:layout_margin="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="12dp">
+
+        <!-- Avatar / icon circle -->
+        <FrameLayout
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginEnd="12dp">
+
+            <ImageView
+                android:id="@+id/imgAvatar"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/bg_icon_circle"
+                android:src="@drawable/ic_person"
+                android:scaleType="center"
+                android:contentDescription="User avatar" />
+        </FrameLayout>
+
+        <!-- Title & subtitle -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvListTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textColor="@color/text_dark"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-medium" />
+
+            <!-- Subtitle lines -->
+            <View
+                android:layout_width="100dp"
+                android:layout_height="2dp"
+                android:background="@color/divider"
+                android:layout_marginTop="4dp" />
+            <View
+                android:layout_width="80dp"
+                android:layout_height="2dp"
+                android:background="@color/divider"
+                android:layout_marginTop="3dp" />
+        </LinearLayout>
+
+        <!-- Menu icon -->
+        <ImageButton
+            android:id="@+id/btnListMenu"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_more"
+            android:scaleType="center"
+            android:contentDescription="More options" />
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

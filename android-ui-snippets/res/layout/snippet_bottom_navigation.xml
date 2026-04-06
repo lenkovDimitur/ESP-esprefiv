@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ============================================================
+     BOTTOM NAVIGATION BARS
+     ============================================================ -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/bg_cream">
+
+    <!-- ===== Style 1: Simple bottom nav with text labels ===== -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        android:layout_marginBottom="16dp">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavSimple"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="@color/white"
+            app:labelVisibilityMode="labeled"
+            app:itemIconTint="@color/text_medium"
+            app:itemTextColor="@color/text_medium"
+            app:menu="@menu/bottom_nav_menu" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- ===== Style 2: Bottom nav with active indicator ===== -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavStyled"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="@color/white"
+            app:labelVisibilityMode="labeled"
+            app:itemActiveIndicatorStyle="@style/Widget.App.BottomNav.ActiveIndicator"
+            app:itemIconTint="@color/bottom_nav_item_color"
+            app:itemTextColor="@color/bottom_nav_item_color"
+            app:menu="@menu/bottom_nav_menu" />
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

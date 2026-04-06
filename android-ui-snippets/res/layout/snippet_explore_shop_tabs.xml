@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ============================================================
+     EXPLORE/SHOP BUTTONS & SEGMENTED TABS (DAILY/WEEKLY/MONTHLY)
+     ============================================================ -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/bg_cream">
+
+    <!-- ===== Explore buttons with chevron ===== -->
+
+    <!-- Purple filled Explore > -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnExplorePurple"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:text="Explore"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:backgroundTint="@color/purple_primary"
+        app:icon="@drawable/ic_chevron_right"
+        app:iconTint="@color/white"
+        app:iconGravity="end"
+        app:cornerRadius="22dp"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Green outlined Explore with toggle -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_button_outlined_green"
+        android:paddingStart="16dp"
+        android:paddingEnd="8dp"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Explore"
+            android:textColor="@color/green_primary"
+            android:textSize="14sp"
+            android:layout_marginEnd="8dp" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchExplore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:trackTint="@color/green_light" />
+    </LinearLayout>
+
+    <!-- Explore > with Shop Now pair -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="8dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnExploreGreen"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:text="Explore  >"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/green_primary"
+            app:cornerRadius="22dp"
+            android:layout_marginEnd="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnShopNow"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:text="Shop Now"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/orange_primary"
+            app:cornerRadius="22dp" />
+    </LinearLayout>
+
+    <!-- ===== Segmented Tab Control: DAILY / WEEKLY / MONTHLY ===== -->
+
+    <!-- Purple variant -->
+    <LinearLayout
+        android:id="@+id/tabGroupPurple"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_tab_unselected"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:id="@+id/tabDaily"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="DAILY"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:fontFamily="sans-serif-medium"
+            android:background="@drawable/bg_tab_selected" />
+
+        <TextView
+            android:id="@+id/tabWeekly"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="WEEKLY"
+            android:textColor="@color/text_medium"
+            android:textSize="12sp"
+            android:fontFamily="sans-serif-medium" />
+
+        <TextView
+            android:id="@+id/tabMonthly"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="MONTHLY"
+            android:textColor="@color/text_medium"
+            android:textSize="12sp"
+            android:fontFamily="sans-serif-medium" />
+    </LinearLayout>
+
+    <!-- Blue variant with border -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        app:cardCornerRadius="22dp"
+        app:strokeColor="@color/blue_primary"
+        app:strokeWidth="1.5dp"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:id="@+id/tabGroupBlue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="DAILY"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif-medium"
+                android:background="@color/blue_primary" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="WEEKLY"
+                android:textColor="@color/blue_primary"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="MONTHLY"
+                android:textColor="@color/blue_primary"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif-medium" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

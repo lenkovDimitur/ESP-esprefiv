@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ============================================================
+     CHECKBOXES, RADIO BUTTONS & TOGGLES
+     ============================================================ -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/bg_cream">
+
+    <!-- ===== Checkbox ===== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/checkboxChecked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            app:buttonTint="@color/blue_primary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Checkbox"
+            android:textColor="@color/text_dark"
+            android:textSize="16sp"
+            android:layout_marginStart="8dp" />
+
+        <!-- Radio button (selected) -->
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/radioSelected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            app:buttonTint="@color/blue_primary"
+            android:layout_marginStart="24dp" />
+    </LinearLayout>
+
+    <!-- ===== Radio Button ===== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/checkboxUnchecked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            app:buttonTint="@color/text_light" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Radio"
+            android:textColor="@color/text_dark"
+            android:textSize="16sp"
+            android:layout_marginStart="8dp" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/radioUnselected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            app:buttonTint="@color/text_light"
+            android:layout_marginStart="24dp" />
+    </LinearLayout>
+
+    <!-- ===== Toggle / Switch ===== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            app:buttonTint="@color/green_primary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Toggle"
+            android:textColor="@color/text_dark"
+            android:textSize="16sp"
+            android:layout_marginStart="8dp" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/toggleSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            app:thumbTint="@color/white"
+            app:trackTint="@color/blue_primary"
+            android:layout_marginStart="24dp" />
+    </LinearLayout>
+
+    <!-- Row of toggle switches -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            app:thumbTint="@color/white"
+            app:trackTint="@color/blue_primary"
+            android:layout_marginEnd="16dp" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            app:thumbTint="@color/text_light"
+            app:trackTint="@color/divider"
+            android:layout_marginEnd="16dp" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            app:thumbTint="@color/white"
+            app:trackTint="@color/green_primary" />
+    </LinearLayout>
+
+</LinearLayout>

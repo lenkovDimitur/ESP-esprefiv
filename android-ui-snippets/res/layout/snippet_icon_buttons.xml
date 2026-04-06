@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ============================================================
+     ICON BUTTONS - Circular icon buttons (add, search, user, etc.)
+     ============================================================ -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/bg_cream">
+
+    <!-- Row of colored circular icon buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <!-- Add / Plus button (blue) -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:fabSize="mini"
+            app:srcCompat="@drawable/ic_add"
+            app:tint="@color/white"
+            app:backgroundTint="@color/blue_primary"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Circle" />
+
+        <!-- Search button (purple) -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:fabSize="mini"
+            app:srcCompat="@drawable/ic_search"
+            app:tint="@color/white"
+            app:backgroundTint="@color/purple_primary"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Circle" />
+
+        <!-- User / Person button (orange) -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:fabSize="mini"
+            app:srcCompat="@drawable/ic_person"
+            app:tint="@color/white"
+            app:backgroundTint="@color/orange_primary"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Circle" />
+    </LinearLayout>
+
+    <!-- Row 2: Outlined circle icon buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <!-- Search outlined -->
+        <ImageButton
+            android:id="@+id/btnSearchOutlined"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_icon_circle"
+            android:src="@drawable/ic_search"
+            android:scaleType="center"
+            android:contentDescription="Search"
+            android:layout_margin="8dp" />
+
+        <!-- User outlined -->
+        <ImageButton
+            android:id="@+id/btnUserOutlined"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_icon_circle"
+            android:src="@drawable/ic_person"
+            android:scaleType="center"
+            android:contentDescription="Profile"
+            android:layout_margin="8dp" />
+
+        <!-- Settings outlined -->
+        <ImageButton
+            android:id="@+id/btnSettingsOutlined"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_icon_circle"
+            android:src="@drawable/ic_settings"
+            android:scaleType="center"
+            android:contentDescription="Settings"
+            android:layout_margin="8dp" />
+    </LinearLayout>
+
+    <!-- Row 3: Colored + notification badge icon -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <!-- Add green -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAddGreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:fabSize="mini"
+            app:srcCompat="@drawable/ic_add"
+            app:tint="@color/white"
+            app:backgroundTint="@color/green_primary" />
+
+        <!-- Notification bell with badge -->
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabNotification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fabSize="mini"
+                app:srcCompat="@drawable/ic_notification"
+                app:tint="@color/white"
+                app:backgroundTint="@color/purple_primary" />
+
+            <!-- Red notification count badge -->
+            <TextView
+                android:id="@+id/tvNotificationBadge"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="top|end"
+                android:background="@drawable/bg_badge_red"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:fontFamily="sans-serif-medium" />
+        </FrameLayout>
+
+        <!-- Close / X button (red) -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:fabSize="mini"
+            app:srcCompat="@drawable/ic_close"
+            app:tint="@color/white"
+            app:backgroundTint="@color/red_badge" />
+    </LinearLayout>
+
+</LinearLayout>

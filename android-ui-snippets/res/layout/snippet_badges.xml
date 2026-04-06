@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ============================================================
+     BADGES & STATUS INDICATORS (NEW, SALE, ONLINE, notification)
+     ============================================================ -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/bg_cream">
+
+    <!-- Row 1: Simple badges -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <!-- NEW badge (green) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.App.Badge"
+            android:background="@drawable/bg_badge_green"
+            android:text="NEW"
+            android:layout_marginEnd="8dp" />
+
+        <!-- SALE badge (orange) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.App.Badge"
+            android:background="@drawable/bg_badge_orange"
+            android:text="SALE"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Notification bell with count badge -->
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_notification"
+                android:contentDescription="Notifications"
+                android:layout_margin="4dp" />
+
+            <TextView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_gravity="top|end"
+                android:background="@drawable/bg_badge_red"
+                android:gravity="center"
+                android:text="3"
+                android:textColor="@color/white"
+                android:textSize="9sp"
+                android:fontFamily="sans-serif-bold" />
+        </FrameLayout>
+
+        <!-- ONLINE badge (green) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.App.Badge"
+            android:background="@drawable/bg_badge_green"
+            android:text="ONLINE" />
+    </LinearLayout>
+
+    <!-- Row 2: STATUS badge (orange) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.App.Badge"
+            android:background="@drawable/bg_badge_orange"
+            android:text="STATUS"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Bell with 3+ badge -->
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_notification"
+                android:contentDescription="Notifications"
+                android:layout_margin="4dp" />
+
+            <TextView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_gravity="top|end"
+                android:background="@drawable/bg_badge_red"
+                android:gravity="center"
+                android:text="3+"
+                android:textColor="@color/white"
+                android:textSize="8sp"
+                android:fontFamily="sans-serif-bold" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.App.Badge"
+            android:background="@drawable/bg_badge_green"
+            android:text="ONLINE" />
+    </LinearLayout>
+
+    <!-- Row 3: Rounded pill badges with colors -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <!-- NEW (blue outlined) -->
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NEW"
+            app:chipBackgroundColor="@android:color/transparent"
+            app:chipStrokeColor="@color/blue_primary"
+            app:chipStrokeWidth="1dp"
+            android:textColor="@color/blue_primary"
+            android:textSize="11sp"
+            android:layout_marginEnd="8dp" />
+
+        <!-- SALE (orange filled) -->
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SALE"
+            app:chipBackgroundColor="@color/orange_primary"
+            android:textColor="@color/white"
+            android:textSize="11sp"
+            android:layout_marginEnd="8dp" />
+
+        <!-- More options (...) badge -->
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="···"
+            app:chipBackgroundColor="@color/blue_primary"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</LinearLayout>

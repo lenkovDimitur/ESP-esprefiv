@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Outlined button with green border (GET STARTED Google style) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/white" />
+    <stroke
+        android:width="1.5dp"
+        android:color="@color/green_primary" />
+    <corners android:radius="24dp" />
+</shape>

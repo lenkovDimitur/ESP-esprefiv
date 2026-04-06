@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ============================================================
+     CHAT BUBBLES - Sent & received message styles
+     ============================================================ -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/bg_cream">
+
+    <!-- ===== Typing indicator bubble ===== -->
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginBottom="8dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_chat_bubble_received"
+            android:padding="12dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- Typing dots -->
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:background="@drawable/bg_icon_circle"
+                android:layout_marginEnd="4dp" />
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:background="@drawable/bg_icon_circle"
+                android:layout_marginEnd="4dp" />
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:background="@drawable/bg_icon_circle" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- ===== Sent message (green, right-aligned) ===== -->
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_chat_bubble_sent"
+            android:padding="12dp"
+            android:text="Hello! How are you?"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:maxWidth="260dp" />
+    </FrameLayout>
+
+    <!-- ===== Received message (gray, left-aligned) ===== -->
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_chat_bubble_received"
+            android:padding="12dp"
+            android:text="I'm doing great, thanks!"
+            android:textColor="@color/text_dark"
+            android:textSize="14sp"
+            android:maxWidth="260dp" />
+    </FrameLayout>
+
+    <!-- ===== Large sent message block ===== -->
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginBottom="8dp">
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_chat_bubble_sent"
+            android:padding="16dp"
+            android:orientation="vertical">
+
+            <!-- Decorative wave lines like in the image -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/white"
+                android:alpha="0.5"
+                android:layout_marginBottom="6dp" />
+            <View
+                android:layout_width="120dp"
+                android:layout_height="2dp"
+                android:background="@color/white"
+                android:alpha="0.5"
+                android:layout_marginBottom="6dp" />
+            <View
+                android:layout_width="140dp"
+                android:layout_height="2dp"
+                android:background="@color/white"
+                android:alpha="0.5" />
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>
