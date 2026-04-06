@@ -210,21 +210,25 @@ fun UIKitScreen() {
         // ━━━━━━━━━━ PROGRESS ━━━━━━━━━━
         Spacer(Modifier.height(8.dp))
         SectionTitle("Progress & Sliders")
-        var sliderVal by remember { mutableFloatStateOf(50f) }
+        var sliderVal by remember { mutableStateOf(50f) }
         val animProg by animateFloatAsState(sliderVal / 100f, label = "p")
 
-        LinearProgressIndicator(progress = { 0.65f }, Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(4.dp)),
-            color = GreenPrimary, trackColor = GreenLight)
-        LinearProgressIndicator(progress = { 0.45f }, Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(4.dp)),
-            color = BluePrimary, trackColor = BlueLight)
+        @Suppress("DEPRECATION")
+        LinearProgressIndicator(progress = 0.65f, modifier = Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(4.dp)),
+            color = GreenPrimary, backgroundColor = GreenLight)
+        @Suppress("DEPRECATION")
+        LinearProgressIndicator(progress = 0.45f, modifier = Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(4.dp)),
+            color = BluePrimary, backgroundColor = BlueLight)
         Slider(value = sliderVal, onValueChange = { sliderVal = it }, valueRange = 0f..100f,
             colors = SliderDefaults.colors(thumbColor = BluePrimary, activeTrackColor = BluePrimary, inactiveTrackColor = BlueLight))
-        LinearProgressIndicator(progress = { 0.85f }, Modifier.fillMaxWidth().height(12.dp).clip(RoundedCornerShape(6.dp)),
-            color = Color(0xFF4A6FA5), trackColor = Divider)
+        @Suppress("DEPRECATION")
+        LinearProgressIndicator(progress = 0.85f, modifier = Modifier.fillMaxWidth().height(12.dp).clip(RoundedCornerShape(6.dp)),
+            color = Color(0xFF4A6FA5), backgroundColor = Divider)
 
         Box(Modifier.fillMaxWidth().padding(top = 8.dp), contentAlignment = Alignment.Center) {
-            CircularProgressIndicator(progress = { animProg }, Modifier.size(100.dp), strokeWidth = 8.dp,
-                color = BluePrimary, trackColor = Divider)
+            @Suppress("DEPRECATION")
+            CircularProgressIndicator(progress = animProg, modifier = Modifier.size(100.dp), strokeWidth = 8.dp,
+                color = BluePrimary)
             Text("${(animProg * 100).toInt()}%", fontSize = 20.sp, fontWeight = FontWeight.Medium, color = TextDark)
         }
 
@@ -303,7 +307,7 @@ fun UIKitScreen() {
         // ━━━━━━━━━━ BOTTOM NAV ━━━━━━━━━━
         Spacer(Modifier.height(8.dp))
         SectionTitle("Bottom Navigation")
-        var navIdx by remember { mutableIntStateOf(0) }
+        var navIdx by remember { mutableStateOf(0) }
         val navItems = listOf("Home" to Icons.Default.Home, "Discover" to Icons.Default.Explore,
             "Cart" to Icons.Default.ShoppingCart, "Profile" to Icons.Default.Person)
         Card(shape = RoundedCornerShape(16.dp), elevation = CardDefaults.cardElevation(4.dp)) {
@@ -370,7 +374,7 @@ fun UIKitScreen() {
 }
 
 @Composable private fun SegmentedTabs(items: List<String>, selectedColor: Color, unselectedColor: Color, selectedTextColor: Color, unselectedTextColor: Color) {
-    var sel by remember { mutableIntStateOf(0) }
+    var sel by remember { mutableStateOf(0) }
     Row(Modifier.fillMaxWidth().height(44.dp).clip(RoundedCornerShape(22.dp)).background(unselectedColor)) {
         items.forEachIndexed { i, label ->
             Box(Modifier.weight(1f).fillMaxHeight().clip(RoundedCornerShape(22.dp))
@@ -382,7 +386,7 @@ fun UIKitScreen() {
 }
 
 @Composable private fun SegmentedTabsBordered(items: List<String>, color: Color) {
-    var sel by remember { mutableIntStateOf(0) }
+    var sel by remember { mutableStateOf(0) }
     Row(Modifier.fillMaxWidth().height(44.dp).clip(RoundedCornerShape(22.dp)).border(1.5.dp, color, RoundedCornerShape(22.dp))) {
         items.forEachIndexed { i, label ->
             Box(Modifier.weight(1f).fillMaxHeight().background(if (i == sel) color else Color.Transparent).clickable { sel = i },
