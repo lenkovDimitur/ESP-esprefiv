@@ -45,6 +45,7 @@ private val Divider = Color(0xFFDFE6E9)
 
 // ── Main Composable ────────────────────────────────────────────
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true, widthDp = 420, heightDp = 2200, name = "UI Kit Full Preview")
 @Composable
 fun UIKitScreen() {
