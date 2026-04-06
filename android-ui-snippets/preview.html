@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Android UI Kit - Button Preview</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+  @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    background: #F5F0EB;
+    padding: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 22px;
+    color: #2D3436;
+    margin-bottom: 24px;
+    font-weight: 700;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #636E72;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 20px 0 12px 0;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  /* ── Base button reset ─────────────────────── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    transition: transform 0.15s, box-shadow 0.15s;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+  .btn:active { transform: translateY(0); }
+
+  .btn .material-icons { font-size: 20px; }
+
+  /* ── Pill shape sizes ──────────────────────── */
+  .btn-lg { height: 50px; border-radius: 25px; padding: 0 28px; }
+  .btn-md { height: 44px; border-radius: 22px; padding: 0 22px; }
+  .btn-sm { height: 38px; border-radius: 19px; padding: 0 24px; font-size: 13px; }
+
+  /* ── Filled Gradient Buttons ───────────────── */
+  .btn-grad-blue {
+    background: linear-gradient(90deg, #5B8DEF, #A8C4F0);
+    color: #fff;
+  }
+  .btn-grad-orange {
+    background: linear-gradient(90deg, #E8895C, #F2B899);
+    color: #fff;
+  }
+  .btn-grad-purple {
+    background: linear-gradient(90deg, #7B6BA8, #B8A9D4);
+    color: #fff;
+  }
+  .btn-solid-green {
+    background: #5EBD9B;
+    color: #fff;
+  }
+  .btn-solid-purple {
+    background: #7B6BA8;
+    color: #fff;
+  }
+  .btn-solid-orange {
+    background: #E8895C;
+    color: #fff;
+  }
+
+  /* ── Outlined Buttons ──────────────────────── */
+  .btn-outline {
+    background: #fff;
+  }
+  .btn-outline-green {
+    border: 1.5px solid #5EBD9B;
+    color: #2D3436;
+  }
+  .btn-outline-blue {
+    border: 1.5px solid #5B8DEF;
+    color: #5B8DEF;
+  }
+  .btn-outline-orange {
+    border: 1.5px solid #E8895C;
+    color: #E8895C;
+  }
+  .btn-outline-dark {
+    border: 1.5px solid #2D3436;
+    color: #2D3436;
+  }
+  .btn-outline-green-toggle {
+    border: 1.5px solid #5EBD9B;
+    color: #5EBD9B;
+    padding-right: 8px;
+  }
+
+  /* ── Small utility ─────────────────────────── */
+  .btn-get {
+    background: #D4E4FA;
+    color: #5B8DEF;
+  }
+  .btn-close {
+    background: #E07C7C;
+    color: #fff;
+  }
+
+  /* ── Toggle switch (CSS-only) ──────────────── */
+  .toggle-track {
+    width: 40px; height: 22px;
+    background: #A4DBC8;
+    border-radius: 11px;
+    position: relative;
+    display: inline-block;
+  }
+  .toggle-track::after {
+    content: '';
+    width: 18px; height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px; right: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+
+  /* ── Circular Icon Buttons ─────────────────── */
+  .icon-btn {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    position: relative;
+  }
+  .icon-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+  .icon-btn .material-icons { font-size: 24px; }
+
+  .icon-btn-blue    { background: #5B8DEF; color: #fff; }
+  .icon-btn-purple  { background: #7B6BA8; color: #fff; }
+  .icon-btn-orange  { background: #E8895C; color: #fff; }
+  .icon-btn-green   { background: #5EBD9B; color: #fff; }
+  .icon-btn-red     { background: #EF5350; color: #fff; }
+
+  .icon-btn-outline {
+    background: #fff;
+    border: 1.5px solid #DFE6E9;
+    color: #636E72;
+  }
+
+  /* ── Notification badge ────────────────────── */
+  .badge-wrapper { position: relative; display: inline-flex; }
+  .notif-badge {
+    position: absolute;
+    top: -4px; right: -4px;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: #EF5350;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #F5F0EB;
+  }
+
+  /* ── Status badges ─────────────────────────── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 0.5px;
+  }
+  .badge-green  { background: #5EBD9B; }
+  .badge-orange { background: #E8895C; }
+  .badge-blue   { background: #5B8DEF; }
+  .badge-red    { background: #EF5350; }
+  .badge-outline-blue {
+    background: transparent;
+    border: 1px solid #5B8DEF;
+    color: #5B8DEF;
+  }
+
+  /* ── Segmented tabs ────────────────────────── */
+  .tabs {
+    display: inline-flex;
+    border-radius: 22px;
+    overflow: hidden;
+    height: 44px;
+  }
+  .tab {
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .tabs-purple { background: #E8E0F0; }
+  .tabs-purple .tab { color: #636E72; }
+  .tabs-purple .tab.active { background: #7B6BA8; color: #fff; border-radius: 22px; }
+
+  .tabs-blue { border: 1.5px solid #5B8DEF; }
+  .tabs-blue .tab { color: #5B8DEF; }
+  .tabs-blue .tab.active { background: #5B8DEF; color: #fff; }
+
+  /* ── Progress bars ─────────────────────────── */
+  .progress-bar {
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 300px;
+  }
+  .progress-bar-track { height: 100%; border-radius: 4px; }
+
+  /* ── Circular progress ─────────────────────── */
+  .circular-progress {
+    width: 100px; height: 100px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .circular-progress svg { position: absolute; top: 0; left: 0; transform: rotate(-90deg); }
+  .circular-progress .pct {
+    font-size: 20px;
+    font-weight: 500;
+    color: #2D3436;
+    z-index: 1;
+  }
+
+  /* ── Slider ────────────────────────────────── */
+  .slider-container { width: 100%; max-width: 300px; }
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #5B8DEF 50%, #A8C4F0 50%);
+    outline: none;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: #5B8DEF;
+    cursor: pointer;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+
+  /* ── Product cards ─────────────────────────── */
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+    width: 180px;
+    flex-shrink: 0;
+  }
+  .card-header {
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .card-image {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-image .material-icons { font-size: 48px; opacity: 0.5; }
+  .card-body { padding: 12px; }
+  .card-body h3 { font-size: 16px; font-weight: 500; color: #2D3436; }
+  .card-body p { font-size: 12px; color: #636E72; }
+  .card-price { display: flex; justify-content: space-between; margin-top: 8px; }
+  .card-price .label { font-size: 12px; color: #636E72; }
+  .card-price .value { font-size: 16px; font-weight: 700; color: #2D3436; }
+
+  /* ── Checkbox / Radio / Toggle row ─────────── */
+  .control-row {
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 10px; font-size: 16px; color: #2D3436;
+  }
+  .checkbox {
+    width: 22px; height: 22px; border-radius: 4px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .checkbox.checked { background: #5B8DEF; color: #fff; }
+  .checkbox.unchecked { border: 2px solid #B2BEC3; background: #fff; }
+  .checkbox .material-icons { font-size: 18px; }
+
+  .radio {
+    width: 22px; height: 22px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .radio.selected { border: 2px solid #5B8DEF; }
+  .radio.selected::after {
+    content: ''; width: 12px; height: 12px;
+    border-radius: 50%; background: #5B8DEF;
+  }
+  .radio.unselected { border: 2px solid #B2BEC3; }
+
+  .toggle {
+    width: 44px; height: 24px;
+    border-radius: 12px; position: relative;
+    display: inline-block; cursor: pointer;
+  }
+  .toggle::after {
+    content: ''; width: 20px; height: 20px;
+    border-radius: 50%; background: #fff;
+    position: absolute; top: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    transition: left 0.2s;
+  }
+  .toggle.on { background: #5B8DEF; }
+  .toggle.on::after { left: 22px; }
+  .toggle.off { background: #DFE6E9; }
+  .toggle.off::after { left: 2px; }
+  .toggle.green { background: #5EBD9B; }
+  .toggle.green::after { left: 22px; }
+
+  /* ── Chat bubbles ──────────────────────────── */
+  .chat { max-width: 340px; }
+  .bubble {
+    padding: 12px 16px;
+    font-size: 14px;
+    max-width: 260px;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .bubble-sent {
+    background: #5EBD9B; color: #fff;
+    border-radius: 16px 16px 4px 16px;
+    margin-left: auto;
+  }
+  .bubble-received {
+    background: #DFE6E9; color: #2D3436;
+    border-radius: 4px 16px 16px 16px;
+  }
+  .bubble-typing {
+    background: #DFE6E9;
+    border-radius: 16px;
+    padding: 14px 18px;
+    display: inline-flex; gap: 5px;
+  }
+  .typing-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%; background: #636E72;
+    animation: typingPulse 1.4s infinite;
+  }
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typingPulse {
+    0%, 60%, 100% { opacity: 0.3; transform: scale(0.8); }
+    30% { opacity: 1; transform: scale(1); }
+  }
+
+  /* ── Bottom Nav ────────────────────────────── */
+  .bottom-nav {
+    display: flex;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding: 8px 0;
+    max-width: 400px;
+  }
+  .nav-item {
+    flex: 1;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 2px;
+    font-size: 11px; color: #636E72;
+    cursor: pointer; padding: 4px 0;
+    position: relative;
+  }
+  .nav-item.active { color: #5B8DEF; }
+  .nav-item.active::before {
+    content: '';
+    position: absolute; top: -2px;
+    width: 48px; height: 32px;
+    border-radius: 16px;
+    background: rgba(91,141,239,0.12);
+  }
+  .nav-item .material-icons { font-size: 24px; z-index: 1; }
+  .nav-item span { z-index: 1; }
+  .nav-cart-badge {
+    position: absolute; top: -2px; right: calc(50% - 20px);
+    width: 16px; height: 16px; border-radius: 50%;
+    background: #EF5350; color: #fff;
+    font-size: 9px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2;
+  }
+
+  /* ── Grid icon cards ───────────────────────── */
+  .grid-card {
+    width: 80px; height: 80px;
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+  .grid-card:hover { transform: translateY(-2px); }
+  .grid-card .material-icons { font-size: 32px; color: #fff; }
+
+  /* ── Divider ───────────────────────────────── */
+  hr {
+    border: none;
+    height: 1px;
+    background: #DFE6E9;
+    margin: 8px 0 4px 0;
+  }
+</style>
+</head>
+<body>
+
+<h1>Android UI Kit - All Components Preview</h1>
+
+<!-- ═══════════ FILLED GRADIENT BUTTONS ═══════════ -->
+<div class="section-label">Filled Gradient Buttons</div>
+<div class="row">
+  <button class="btn btn-lg btn-grad-blue"><span class="material-icons">rocket_launch</span> GET STARTED</button>
+  <button class="btn btn-lg btn-grad-orange">LOGIN</button>
+  <button class="btn btn-lg btn-grad-purple">SIGN UP</button>
+</div>
+<div class="row">
+  <button class="btn btn-lg btn-solid-green"><span class="material-icons">shopping_cart</span> CONTINUE</button>
+  <button class="btn btn-md btn-solid-purple">Explore <span class="material-icons" style="font-size:18px">chevron_right</span></button>
+  <button class="btn btn-md btn-solid-green">Explore &gt;</button>
+  <button class="btn btn-md btn-solid-orange">Shop Now</button>
+</div>
+
+<!-- ═══════════ OUTLINED BUTTONS ═══════════ -->
+<div class="section-label">Outlined Buttons</div>
+<div class="row">
+  <button class="btn btn-lg btn-outline btn-outline-green"><span class="material-icons" style="color:#5EBD9B">g_translate</span> GET STARTED</button>
+  <button class="btn btn-lg btn-outline btn-outline-blue">LOGIN</button>
+  <button class="btn btn-lg btn-outline btn-outline-orange">SIGN UP</button>
+</div>
+<div class="row">
+  <button class="btn btn-lg btn-outline btn-outline-dark"><span class="material-icons">play_arrow</span> CONTINUE</button>
+  <button class="btn btn-lg btn-outline btn-outline-dark"><span class="material-icons">arrow_forward</span> CONTINUE</button>
+  <button class="btn btn-md btn-outline btn-outline-green-toggle" style="background:#fff">
+    Explore <span class="toggle-track" style="margin-left:8px"></span>
+  </button>
+</div>
+
+<!-- ═══════════ SMALL / UTILITY ═══════════ -->
+<div class="section-label">Small / Utility Buttons</div>
+<div class="row">
+  <button class="btn btn-sm btn-get">GET</button>
+  <button class="btn btn-sm btn-close">CLOSE</button>
+</div>
+
+<!-- ═══════════ ICON BUTTONS ═══════════ -->
+<div class="section-label">Icon Buttons - Filled</div>
+<div class="row">
+  <button class="icon-btn icon-btn-blue"><span class="material-icons">add</span></button>
+  <button class="icon-btn icon-btn-purple"><span class="material-icons">search</span></button>
+  <button class="icon-btn icon-btn-orange"><span class="material-icons">person</span></button>
+  <button class="icon-btn icon-btn-green"><span class="material-icons">add</span></button>
+  <div class="badge-wrapper">
+    <button class="icon-btn icon-btn-purple"><span class="material-icons">notifications</span></button>
+    <span class="notif-badge">1</span>
+  </div>
+  <button class="icon-btn icon-btn-red"><span class="material-icons">close</span></button>
+</div>
+
+<div class="section-label">Icon Buttons - Outlined</div>
+<div class="row">
+  <button class="icon-btn icon-btn-outline"><span class="material-icons">search</span></button>
+  <button class="icon-btn icon-btn-outline"><span class="material-icons">person</span></button>
+  <button class="icon-btn icon-btn-outline"><span class="material-icons">settings</span></button>
+</div>
+
+<hr>
+
+<!-- ═══════════ SEGMENTED TABS ═══════════ -->
+<div class="section-label">Segmented Tabs</div>
+<div class="row">
+  <div class="tabs tabs-purple">
+    <div class="tab active">DAILY</div>
+    <div class="tab">WEEKLY</div>
+    <div class="tab">MONTHLY</div>
+  </div>
+</div>
+<div class="row">
+  <div class="tabs tabs-blue">
+    <div class="tab active">DAILY</div>
+    <div class="tab">WEEKLY</div>
+    <div class="tab">MONTHLY</div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════ BADGES ═══════════ -->
+<div class="section-label">Badges &amp; Status</div>
+<div class="row">
+  <span class="badge badge-green">NEW</span>
+  <span class="badge badge-orange">SALE</span>
+  <div class="badge-wrapper">
+    <span class="material-icons" style="font-size:28px;color:#7B6BA8">notifications</span>
+    <span class="notif-badge">3</span>
+  </div>
+  <span class="badge badge-green">ONLINE</span>
+  <span class="badge badge-orange">STATUS</span>
+</div>
+<div class="row" style="margin-top:4px">
+  <span class="badge badge-outline-blue">NEW</span>
+  <span class="badge badge-orange">SALE</span>
+  <span class="badge badge-blue">···</span>
+</div>
+
+<hr>
+
+<!-- ═══════════ PRODUCT CARDS ═══════════ -->
+<div class="section-label">Product Cards</div>
+<div class="row">
+  <div class="card">
+    <div class="card-header" style="background:#A4DBC8">PRODUCT</div>
+    <div class="card-image" style="background:#A4DBC8"><span class="material-icons">image</span></div>
+    <div class="card-body">
+      <h3>Title title</h3>
+      <p>Image polotor</p>
+      <div class="card-price">
+        <span class="label">Price</span>
+        <span class="value">$200</span>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" style="background:#B8A9D4">
+      FEATURED
+      <div style="margin-top:6px">
+        <div style="width:60px;height:2px;background:#7B6BA8;margin-bottom:3px"></div>
+        <div style="width:40px;height:2px;background:#7B6BA8"></div>
+      </div>
+    </div>
+    <div class="card-image" style="background:#B8A9D4;height:130px"><span class="material-icons" style="color:#7B6BA8;font-size:56px;opacity:0.7">image</span></div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════ PROGRESS & SLIDERS ═══════════ -->
+<div class="section-label">Progress Bars &amp; Sliders</div>
+<div style="display:flex;flex-direction:column;gap:12px;max-width:340px">
+  <div class="progress-bar" style="background:#A4DBC8">
+    <div class="progress-bar-track" style="width:65%;background:#5EBD9B"></div>
+  </div>
+  <div class="progress-bar" style="background:#A8C4F0">
+    <div class="progress-bar-track" style="width:45%;background:#5B8DEF"></div>
+  </div>
+  <div class="slider-container">
+    <input type="range" value="50" min="0" max="100">
+  </div>
+  <div class="progress-bar" style="background:#DFE6E9;height:12px;border-radius:6px">
+    <div class="progress-bar-track" style="width:85%;background:#4A6FA5;border-radius:6px"></div>
+  </div>
+</div>
+
+<div style="margin-top:16px;display:flex;align-items:center;gap:24px">
+  <div class="circular-progress">
+    <svg width="100" height="100" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="42" fill="none" stroke="#DFE6E9" stroke-width="8"/>
+      <circle cx="50" cy="50" r="42" fill="none" stroke="#5B8DEF" stroke-width="8"
+        stroke-dasharray="264" stroke-dashoffset="66" stroke-linecap="round"/>
+    </svg>
+    <span class="pct">75%</span>
+  </div>
+  <!-- Small spinners -->
+  <div style="display:flex;gap:12px">
+    <svg width="32" height="32" viewBox="0 0 32 32" style="animation:spin 1s linear infinite">
+      <circle cx="16" cy="16" r="12" fill="none" stroke="#A4DBC8" stroke-width="3"/>
+      <circle cx="16" cy="16" r="12" fill="none" stroke="#5EBD9B" stroke-width="3"
+        stroke-dasharray="75" stroke-dashoffset="60" stroke-linecap="round"/>
+    </svg>
+    <svg width="32" height="32" viewBox="0 0 32 32" style="animation:spin 1s linear infinite;animation-delay:0.2s">
+      <circle cx="16" cy="16" r="12" fill="none" stroke="#A8C4F0" stroke-width="3"/>
+      <circle cx="16" cy="16" r="12" fill="none" stroke="#5B8DEF" stroke-width="3"
+        stroke-dasharray="75" stroke-dashoffset="60" stroke-linecap="round"/>
+    </svg>
+    <svg width="32" height="32" viewBox="0 0 32 32" style="animation:spin 1s linear infinite;animation-delay:0.4s">
+      <circle cx="16" cy="16" r="12" fill="none" stroke="#B8A9D4" stroke-width="3"/>
+      <circle cx="16" cy="16" r="12" fill="none" stroke="#7B6BA8" stroke-width="3"
+        stroke-dasharray="75" stroke-dashoffset="60" stroke-linecap="round"/>
+    </svg>
+  </div>
+</div>
+<style>@keyframes spin { to { transform: rotate(360deg); } }</style>
+
+<hr>
+
+<!-- ═══════════ CHECKBOXES, RADIO, TOGGLES ═══════════ -->
+<div class="section-label">Checkboxes, Radio &amp; Toggles</div>
+<div class="control-row">
+  <span class="checkbox checked"><span class="material-icons">check</span></span>
+  Checkbox
+  <span style="margin-left:16px" class="radio selected"></span>
+</div>
+<div class="control-row">
+  <span class="checkbox unchecked"></span>
+  Radio
+  <span style="margin-left:16px" class="radio unselected"></span>
+</div>
+<div class="control-row">
+  <span class="checkbox checked" style="background:#5EBD9B"><span class="material-icons">check</span></span>
+  Toggle
+  <span class="toggle on" style="margin-left:16px"></span>
+</div>
+<div class="row" style="margin-top:4px">
+  <span class="toggle on"></span>
+  <span class="toggle off"></span>
+  <span class="toggle green"></span>
+</div>
+
+<hr>
+
+<!-- ═══════════ CHAT BUBBLES ═══════════ -->
+<div class="section-label">Chat Bubbles</div>
+<div class="chat">
+  <div style="margin-bottom:8px"><div class="bubble-typing"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div></div>
+  <div class="bubble bubble-sent">Hello! How are you?</div>
+  <div class="bubble bubble-received">I'm doing great, thanks!</div>
+  <div class="bubble bubble-sent" style="width:200px;opacity:0.85">
+    <div style="height:2px;background:rgba(255,255,255,0.5);margin-bottom:6px;width:100%"></div>
+    <div style="height:2px;background:rgba(255,255,255,0.5);margin-bottom:6px;width:70%"></div>
+    <div style="height:2px;background:rgba(255,255,255,0.5);width:80%"></div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════ GRID CARDS ═══════════ -->
+<div class="section-label">Grid Cards</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+  <div class="row">
+    <div class="grid-card" style="background:#A8C4F0"><span class="material-icons">grid_view</span></div>
+    <div class="grid-card" style="background:#5B8DEF"><span class="material-icons">chevron_right</span></div>
+    <div class="grid-card" style="background:#7B6BA8"><span class="material-icons">layers</span></div>
+  </div>
+  <div class="row">
+    <div class="grid-card" style="background:#A8C4F0"><span class="material-icons">image</span></div>
+    <div class="grid-card" style="background:#E8895C"><span class="material-icons">shopping_cart</span></div>
+    <div class="grid-card" style="background:#7B6BA8"><span class="material-icons">settings</span></div>
+  </div>
+  <div class="row">
+    <div class="grid-card" style="background:#5B8DEF"><span class="material-icons">arrow_forward</span></div>
+    <div class="grid-card" style="background:#5EBD9B"><span class="material-icons">star</span></div>
+    <div class="grid-card" style="background:#E8895C"><span class="material-icons">more_horiz</span></div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════ BOTTOM NAVIGATION ═══════════ -->
+<div class="section-label">Bottom Navigation</div>
+<div class="bottom-nav">
+  <div class="nav-item active">
+    <span class="material-icons">home</span>
+    <span>Home</span>
+  </div>
+  <div class="nav-item">
+    <span class="material-icons">explore</span>
+    <span>Discover</span>
+  </div>
+  <div class="nav-item" style="position:relative">
+    <span class="material-icons">shopping_cart</span>
+    <span class="nav-cart-badge">1</span>
+    <span>Cart</span>
+  </div>
+  <div class="nav-item">
+    <span class="material-icons">person</span>
+    <span>Profile</span>
+  </div>
+</div>
+
+<div style="height:40px"></div>
+
+</body>
+</html>
