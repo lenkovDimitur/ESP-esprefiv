@@ -214,21 +214,17 @@ fun UIKitScreen() {
         var sliderVal by remember { mutableStateOf(50f) }
         val animProg by animateFloatAsState(sliderVal / 100f, label = "p")
 
-        @Suppress("DEPRECATION")
-        LinearProgressIndicator(progress = 0.65f, modifier = Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(4.dp)),
-            color = GreenPrimary, backgroundColor = GreenLight)
-        @Suppress("DEPRECATION")
-        LinearProgressIndicator(progress = 0.45f, modifier = Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(4.dp)),
-            color = BluePrimary, backgroundColor = BlueLight)
+LinearProgressIndicator(progress = 0.65f, modifier = Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(4.dp)),
+            color = GreenPrimary, trackColor = GreenLight)
+LinearProgressIndicator(progress = 0.45f, modifier = Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(4.dp)),
+            color = BluePrimary, trackColor = BlueLight)
         Slider(value = sliderVal, onValueChange = { sliderVal = it }, valueRange = 0f..100f,
             colors = SliderDefaults.colors(thumbColor = BluePrimary, activeTrackColor = BluePrimary, inactiveTrackColor = BlueLight))
-        @Suppress("DEPRECATION")
-        LinearProgressIndicator(progress = 0.85f, modifier = Modifier.fillMaxWidth().height(12.dp).clip(RoundedCornerShape(6.dp)),
-            color = Color(0xFF4A6FA5), backgroundColor = Divider)
+LinearProgressIndicator(progress = 0.85f, modifier = Modifier.fillMaxWidth().height(12.dp).clip(RoundedCornerShape(6.dp)),
+            color = Color(0xFF4A6FA5), trackColor = Divider)
 
         Box(Modifier.fillMaxWidth().padding(top = 8.dp), contentAlignment = Alignment.Center) {
-            @Suppress("DEPRECATION")
-            CircularProgressIndicator(progress = animProg, modifier = Modifier.size(100.dp), strokeWidth = 8.dp,
+        CircularProgressIndicator(progress = animProg, modifier = Modifier.size(100.dp), strokeWidth = 8.dp,
                 color = BluePrimary)
             Text("${(animProg * 100).toInt()}%", fontSize = 20.sp, fontWeight = FontWeight.Medium, color = TextDark)
         }
