@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue_primary">#5B8DEF</color>
+    <color name="blue_dark">#4A6FA5</color>
+    <color name="blue_light">#A8C4F0</color>
+    <color name="blue_pale">#D4E4FA</color>
+
+    <color name="purple_primary">#7B6BA8</color>
+    <color name="purple_dark">#5E4D8B</color>
+    <color name="purple_light">#B8A9D4</color>
+
+    <color name="orange_primary">#E8895C</color>
+    <color name="orange_dark">#D06E3E</color>
+    <color name="orange_light">#F2B899</color>
+
+    <color name="green_primary">#5EBD9B</color>
+    <color name="green_dark">#3FA17E</color>
+    <color name="green_light">#A4DBC8</color>
+
+    <color name="red_badge">#EF5350</color>
+    <color name="coral">#E07C7C</color>
+
+    <color name="bg_cream">#F5F0EB</color>
+    <color name="white">#FFFFFF</color>
+    <color name="text_dark">#2D3436</color>
+    <color name="text_medium">#636E72</color>
+    <color name="text_light">#B2BEC3</color>
+    <color name="divider">#DFE6E9</color>
+</resources>
