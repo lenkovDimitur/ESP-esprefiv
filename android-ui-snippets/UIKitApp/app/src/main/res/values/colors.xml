@@ -26,4 +26,12 @@
     <color name="text_medium">#636E72</color>
     <color name="text_light">#B2BEC3</color>
     <color name="divider">#DFE6E9</color>
+
+    <!-- Gradient colors -->
+    <color name="gradient_blue_start">#5B8DEF</color>
+    <color name="gradient_blue_end">#A8C4F0</color>
+    <color name="gradient_purple_start">#7B6BA8</color>
+    <color name="gradient_purple_end">#B8A9D4</color>
+    <color name="gradient_orange_start">#E8895C</color>
+    <color name="gradient_orange_end">#F2B899</color>
 </resources>
